@@ -46,7 +46,7 @@ public class Main {
     	scan.nextLine();
     	Login_VC();
     	
-    	
+    	Test.method();
     }
    
     
