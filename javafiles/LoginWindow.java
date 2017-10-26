@@ -36,8 +36,12 @@ private class TempListener implements ActionListener
 	{
 		public void actionPerformed(ActionEvent event)
 		{	
-			System.out.println(un.getText()+ " " +un1.getText());
-			System.out.println(p.getText()+" " +p1.getText());
+			if(DBTools.testAll(un1.getText(), p1.getText())){
+				//JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Success");
+			}
+			else JOptionPane.showMessageDialog(null, "Record Not Found");
+			//DBTools.insert(un1.getText(), p1.getText());
 			
 		}
 
