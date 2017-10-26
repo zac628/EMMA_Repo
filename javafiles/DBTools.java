@@ -2,7 +2,7 @@ import java.sql.*;
 
 public class DBTools {
 	
-	 static String url = "jdbc:sqlite:test.db";
+	 static String url = "jdbc:sqlite:../../GitHub/EMMA_Repo/test.db";
 	 
 	 public static void connect() {
 	        Connection conn = null;
