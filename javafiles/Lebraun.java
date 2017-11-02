@@ -1,6 +1,18 @@
 
+import java.util.Scanner;
+import java.util.*;
+
+
+
+
 public class Lebraun {
-	public static void test() {
-		System.out.println("IT WORKS");
-	}
+	
+	double PartsPrice = 0;
+	
+	
+	
+	
 }
+	
+
+
