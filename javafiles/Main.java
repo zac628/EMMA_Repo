@@ -45,8 +45,7 @@ public class Main {
     	System.out.println("ENTER to launch LoginWindow: ");
     	scan.nextLine();
     	Login_VC();
-    	Test.method();
-    	
+
     }
    
     
