@@ -2,6 +2,7 @@ import java.util.*;
 public class Employee {
 	private static int employeeCount = 0;
 	private int idNumber;
+	private String designation;
 	private String password;
 	private String fName;
 	private String lName;
@@ -11,6 +12,7 @@ public class Employee {
 	public Employee(){
 		String temp1, temp2;
 		int confirm = 1;
+		this.designation = "Employee";
 		System.out.print("First Name: ");
 		this.fName = scan.nextLine();
 		System.out.print("Last Name: ");
