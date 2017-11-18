@@ -25,19 +25,9 @@ public class Main {
     	System.out.println("admin\t\tpass\n!@#$%^&*()\t?.,\nzac@gmail.com\tRi$eabovE\nzazc\t\t$\n1\t\t2\nabc\t\tabc\n");
     	System.out.println("ENTER to launch LoginWindow: ");
     	scan.nextLine();
-    	Login_VC();
+    	Login.go();
+    	//Login_VC();
     	
    
     }
-   
-    
-    public static void Login_VC()
-	{
-	JFrame frame = new JFrame("EMMA");
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	LoginWindow panel = new LoginWindow();
-	frame.getContentPane().add(panel);
-	frame.pack();
-	frame.setVisible(true);
-	}	
 }
