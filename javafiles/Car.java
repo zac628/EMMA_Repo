@@ -1,80 +1,72 @@
-/* An instance of a car will be used to document and describe a vehicle to be stored in the *database and system. These will be used in conjunction with the WorkOrder class to *submit work orders/repair requests.
-*/ 
+import java.sql.*;
 
 public class Car {
-
-	/* classification will have a drop down selection menu full of sedan, coupe, truck, SUV, 
-	* etc...
-	*/
-	private String classification;
-
-/* make will have a drop down selection menu full of Honda, Toyota, Ford, Subaru, 
-	* etc...
-	*/
-	private String make;
-
-/* model will have a drop down selection menu full of Camry, Corolla, Focus, Civic, 
-	* etc...
-	*/
-	private String model;
-
-	// Year will hold int value representing the year of the car
-	private int year;
-	
-	// License will hold String value representing the license plate number
-	private String license;
-	
-	//Constructor to set values for car instance. All values are required
-	public Car(String type, String make, String model, int year, String license) {
-		classification = type;
-		this.make = make;
-		this.model = model;
-		this.year = year;
-		this.license = license;
+	public static void setPlate(String desired, String current){
+		String sql = "UPDATE Car SET PLATE = ?" + "WHERE PLATE = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, desired);
+			pstmt.setString(2, current);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
 	}
 	
-	public String getClassification() {
-		return classification;
+	public static void setYear(String year, String plate){
+		String sql = "UPDATE Car SET YEAR = ?" + "WHERE PLATE = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, year);
+			pstmt.setString(2, plate);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
 	}
 	
 	
-	
-	public void setClassification(String newClass){
-		classification = newClass;
+	public static void setMake(String make, String plate){
+		String sql = "UPDATE Car SET MAKE = ?" + "WHERE PLATE = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, make);
+			pstmt.setString(2, plate);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
 	}
 	
-	public String getMake(){
-		return make;
+	
+	public static void setModel(String model, String plate){
+		String sql = "UPDATE Car SET MODEL = ?" + "WHERE PLATE = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, model);
+			pstmt.setString(2, plate);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
 	}
 	
 	
-	public void setMake(String newMake){
-		make = newMake;
-	}
-	
-	
-	public String getModel(){
-		return model;
-	}
-	
-	public void setModel(String newModel){
-		model = newModel;
-	}
-	
-	public int getYear(){
-		return year;
-	}
-	
-	public void setYear(int newYear){
-		year = newYear;
-	}
-	
-	public String getLicense(){
-		return license;
-	}
-	
-	public void setLicense(String newLicense){
-		license = newLicense;
+	public static void setColor(String color, String plate){
+		String sql = "UPDATE Car SET COLOR = ?" + "WHERE PLATE = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, color);
+			pstmt.setString(2, plate);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
 	}
 }
 
