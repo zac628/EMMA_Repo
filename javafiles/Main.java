@@ -12,32 +12,13 @@ public class Main {
     	//Tests Login credentials against database successfully!
     	Scanner scan = new Scanner(System.in);
     	
-    	ContactForm.go();
+    //	ContactForm.go();
     	
     	//new SQL table named User in the database with fields Username and Password of type text
-    	DBTools.createNewTable("CREATE TABLE IF NOT EXISTS User (\n"
-        		+ " Username text NOT NULL,\n"
-                + "	Password text NOT NULL\n"
-                + ");");
-    	DBTools.insert("abc", "abc");
     	
-    	System.out.println("Login credentials currently in database: \nUsername\tPassword\n");
-    	System.out.println("admin\t\tpass\n!@#$%^&*()\t?.,\nzac@gmail.com\tRi$eabovE\nzazc\t\t$\n1\t\t2\nabc\t\tabc\n");
-    	System.out.println("ENTER to launch LoginWindow: ");
-    	scan.nextLine();
-    	Login_VC();
+    	Login.go();
+    	//Login_VC();
     	
    
     }
-   
-    
-    public static void Login_VC()
-	{
-	JFrame frame = new JFrame("EMMA");
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	LoginWindow panel = new LoginWindow();
-	frame.getContentPane().add(panel);
-	frame.pack();
-	frame.setVisible(true);
-	}	
 }

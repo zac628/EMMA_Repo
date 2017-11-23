@@ -53,7 +53,7 @@ public class ContactForm extends JFrame {
 	 * Create the frame.
 	 */
 	public ContactForm() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 301);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -160,7 +160,7 @@ public class ContactForm extends JFrame {
 			public void actionPerformed(ActionEvent ev){
 				
 				String sql = "INSERT INTO Client(FNAME,LNAME,NUMBER,ADDRESS,EMAIL,CAR1) VALUES(?,?,?,?,?,?)";
-				 try (Connection conn = DriverManager.getConnection(DBTools.url);
+				try (Connection conn = DriverManager.getConnection(DBTools.url);
 			                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 			            pstmt.setString(1, txtFirstName.getText());
 			            pstmt.setString(2,txtLastName.getText());
@@ -174,7 +174,7 @@ public class ContactForm extends JFrame {
 				 catch (SQLException e) {
 			            System.out.println(e.getMessage());
 			        }
-			 String sql2 = "INSERT INTO Car(PLATE,YEAR,MAKE,MODEL,COLOR) VALUES(?,?,?,?,?)";
+				 String sql2 = "INSERT INTO Car(PLATE,YEAR,MAKE,MODEL,COLOR) VALUES(?,?,?,?,?)";
 				 try (Connection conn = DriverManager.getConnection(DBTools.url);
 			                PreparedStatement pstmt = conn.prepareStatement(sql2)) {
 					 	pstmt.setString(1,txtPlate.getText());
