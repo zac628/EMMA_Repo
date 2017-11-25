@@ -86,15 +86,19 @@ public class Login extends JFrame {
 				if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("A")){
 					//JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
 					AdminUI.go();
+					dispose();
 				}else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("M")){
 					MechanicUI.go();
+					dispose();
 				}
 				else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("E")){
 					EmployeeUI.go();
+					dispose();
 				}else
 					JOptionPane.showMessageDialog(null, "Record Not Found");
 				//DBTools.insert(un1.getText(), p1.getText());
 				}
+			
 		});
 			
 	}
