@@ -19,7 +19,9 @@ public class Main {
     	//Login.go();
     	//Login_VC();
     	
-    	EmployeeUI.go();
+    	//EmployeeUI.go();
+    	
+    	Login.go();
    
     }
 }

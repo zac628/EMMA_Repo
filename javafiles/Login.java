@@ -82,11 +82,17 @@ public class Login extends JFrame {
 			
 		btnLogin.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
-				if(DBTools.testAll(txtUsername.getText(), txtPassword.getText())){
+				
+				if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("A")){
 					//JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
-					JOptionPane.showMessageDialog(null, "Success");
+					AdminUI.go();
+				}else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("M")){
+					MechanicUI.go();
 				}
-				else JOptionPane.showMessageDialog(null, "Record Not Found");
+				else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("E")){
+					EmployeeUI.go();
+				}else
+					JOptionPane.showMessageDialog(null, "Record Not Found");
 				//DBTools.insert(un1.getText(), p1.getText());
 				}
 		});
