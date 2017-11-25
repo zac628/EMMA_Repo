@@ -64,4 +64,69 @@ public class ClientOperations{
 			System.out.println(e.getMessage());
 		}
 	}
+	
+	public static void setCar1(String email, String plate){
+		String sql = "UPDATE Client SET CAR1 = ?" + "WHERE EMAIL = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, plate);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
+	}
+	
+	public static void setCar2(String email, String plate){
+		String sql = "UPDATE Client SET CAR2 = ?" + "WHERE EMAIL = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, plate);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
+	}
+	
+	public static void setCar3(String email, String plate){
+		String sql = "UPDATE Client SET CAR3 = ?" + "WHERE EMAIL = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, plate);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
+	}
+	
+	public static void setCar4(String email, String plate){
+		String sql = "UPDATE Client SET CAR4 = ?" + "WHERE EMAIL = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, plate);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
+	}
+	
+	public static void setCar5(String email, String plate){
+		String sql = "UPDATE Client SET CAR5 = ?" + "WHERE EMAIL = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, plate);
+			pstmt.setString(2, email);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
+	}
 }
