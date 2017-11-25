@@ -16,9 +16,12 @@ public class Main {
     	
     	//new SQL table named User in the database with fields Username and Password of type text
     	
-    	Login.go();
+    	//Login.go();
     	//Login_VC();
     	
+    	//EmployeeUI.go();
+    	
+    	Login.go();
    
     }
 }
