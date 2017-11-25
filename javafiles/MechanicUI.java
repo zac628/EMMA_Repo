@@ -84,7 +84,7 @@ public class MechanicUI extends JFrame {
 		btnNewClient.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				ContactForm.go();
-				
+				dispose();
 			}
 		});
 		
