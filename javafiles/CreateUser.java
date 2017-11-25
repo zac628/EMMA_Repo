@@ -21,11 +21,14 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 
-public class Login extends JFrame {
+public class CreateUser extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	private JTextField txtPassword;
+	private JTextField txtLastName;
+	private JTextField txtFirstName;
+	private JTextField txtPayRatehr;
 	
 	/**
 	 * Launch the application.
@@ -34,7 +37,7 @@ public class Login extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					CreateUser frame = new CreateUser();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,7 +49,7 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
+	public CreateUser() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 301);
 		contentPane = new JPanel();
@@ -54,47 +57,54 @@ public class Login extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(162, 125, 117, 29);
-		contentPane.add(btnLogin);
-		
 		txtUsername = new JTextField();
 		txtUsername.setText("Username");
-		txtUsername.setBounds(155, 49, 130, 26);
+		txtUsername.setBounds(30, 88, 130, 26);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		txtPassword = new JTextField();
 		txtPassword.setText("Password");
-		txtPassword.setBounds(155, 85, 130, 26);
+		txtPassword.setBounds(192, 88, 130, 26);
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
 		
-		JButton btnCreateUser = new JButton("Create User");
-		btnCreateUser.setBounds(162, 167, 117, 29);
+		JButton btnCreateUser = new JButton("Create Employee");
+		btnCreateUser.setBounds(268, 230, 161, 29);
 		contentPane.add(btnCreateUser);
+		
+		JComboBox comboBox = new JComboBox();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"E", "M", "A"}));
+		comboBox.setBounds(246, 141, 76, 27);
+		contentPane.add(comboBox);
+		
+		JLabel lblDesignation = new JLabel("Designation");
+		lblDesignation.setBounds(246, 126, 76, 16);
+		contentPane.add(lblDesignation);
+		
+		txtLastName = new JTextField();
+		txtLastName.setText("Last Name");
+		txtLastName.setBounds(192, 50, 130, 26);
+		contentPane.add(txtLastName);
+		txtLastName.setColumns(10);
+		
+		txtFirstName = new JTextField();
+		txtFirstName.setText("First Name");
+		txtFirstName.setBounds(30, 50, 130, 26);
+		contentPane.add(txtFirstName);
+		txtFirstName.setColumns(10);
+		
+		txtPayRatehr = new JTextField();
+		txtPayRatehr.setText("Pay Rate ($/hr)");
+		txtPayRatehr.setBounds(30, 140, 130, 26);
+		contentPane.add(txtPayRatehr);
+		txtPayRatehr.setColumns(10);
 		
 		btnCreateUser.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				CreateUser.go();
+				DBTools.insert(txtUsername.getText(),txtPassword.getText(),comboBox.getSelectedItem().toString(),txtFirstName.getText(),txtLastName.getText(),Double.parseDouble(txtPayRatehr.getText()));
+				JOptionPane.showMessageDialog(null, "New User Created");
 			}
-		});
-			
-		btnLogin.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent ev){
-				
-				if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("A")){
-					//JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
-					AdminUI.go();
-				}else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("M")){
-					MechanicUI.go();
-				}
-				else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("E")){
-					EmployeeUI.go();
-				}else
-					JOptionPane.showMessageDialog(null, "Record Not Found");
-				//DBTools.insert(un1.getText(), p1.getText());
-				}
 		});
 			
 	}

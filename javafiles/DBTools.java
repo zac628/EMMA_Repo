@@ -31,6 +31,7 @@ public class DBTools {
 	    	 * "String sql = CREATE TABLE IF NOT EXISTS User (\n"
 	        		+ " Username text NOT NULL,\n"
 	                + "	Password text NOT NULL\n"
+	                + " Designation TEXT\n"
 	                + ");"
 	    	*/
 	    	
@@ -45,22 +46,26 @@ public class DBTools {
 	        }
 	    }
 	    
-	    public static void insert(String u, String p) {
-	        String sql = "INSERT INTO User(Username,Password) VALUES(?,?)";
-	        if(!testAll(u,p)){
+	    public static void insert(String u, String p, String d, String f, String l, double r) {
+	        String sql = "INSERT INTO User(USERNAME,PASSWORD,DESIGNATION,FNAME,LNAME,RATE) VALUES(?,?,?,?,?,?)";
+	        //if(!testAll(u,p)){
 		        try (Connection conn = DriverManager.getConnection(url);
 		                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 		            pstmt.setString(1, u);
 		            pstmt.setString(2, p);
+		            pstmt.setString(3, d);
+		            pstmt.setString(4, f);
+		            pstmt.setString(5, l);
+		            pstmt.setDouble(6, r);
 		            pstmt.executeUpdate();
 		        } catch (SQLException e) {
 		            System.out.println(e.getMessage());
 		        }
 	        }
-	    }
+	   // }
 	    
-	    public static boolean testAll(String one, String two){
-	        String sql = "SELECT Username, Password FROM User";
+	    public static String testAll(String one, String two){
+	        String sql = "SELECT USERNAME, PASSWORD, DESIGNATION FROM User";
 	        
 	        try (Connection conn = DriverManager.getConnection(url);
 	             Statement stmt  = conn.createStatement();
@@ -68,13 +73,13 @@ public class DBTools {
 	            
 	            // loop through the result set
 	            while (rs.next()) {
-	                if(rs.getString("Username").equals(one) && rs.getString("Password").equals(two)){
-	                	return true;
+	                if(rs.getString("USERNAME").equals(one) && rs.getString("PASSWORD").equals(two)){
+	                	return rs.getString("DESIGNATION");
 	                }
 	            }
 	        } catch (SQLException e) {
 	            System.out.println(e.getMessage());
 	        }
-			return false;
+			return "x";
 	    }
 }
