@@ -27,6 +27,8 @@ public class Login extends JFrame {
 	private JTextField txtUsername;
 	private JTextField txtPassword;
 	
+	static String currentUser = "No User";
+	
 	/**
 	 * Launch the application.
 	 */
@@ -86,15 +88,22 @@ public class Login extends JFrame {
 				if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("A")){
 					//JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
 					AdminUI.go();
+					currentUser = txtUsername.getText();
+					dispose();
 				}else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("M")){
 					MechanicUI.go();
+					currentUser = txtUsername.getText();
+					dispose();
 				}
 				else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("E")){
 					EmployeeUI.go();
+					currentUser = txtUsername.getText();
+					dispose();
 				}else
 					JOptionPane.showMessageDialog(null, "Record Not Found");
 				//DBTools.insert(un1.getText(), p1.getText());
 				}
+			
 		});
 			
 	}

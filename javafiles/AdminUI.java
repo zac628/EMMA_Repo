@@ -11,6 +11,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -22,6 +25,8 @@ import javax.swing.JButton;
 public class AdminUI extends JFrame {
 	
 	private JPanel contentPane;
+	DateFormat df = new SimpleDateFormat("HH:mm");
+	Date previous = new Date();
 	
 	public static void go() {
 		EventQueue.invokeLater(new Runnable() {
@@ -88,13 +93,32 @@ public class AdminUI extends JFrame {
 			}
 		});
 		
-		JButton btnAdminTools = new JButton("Admin Tools");
-		btnAdminTools.setBounds(1036, 152, 200, 200);
-		contentPane.add(btnAdminTools);
+		JButton btnPunch = new JButton("Record Time Stamp");
+		btnPunch.setBounds(1036, 152, 200, 200);
+		contentPane.add(btnPunch);
 		
-		btnAdminTools.addActionListener(new ActionListener(){
+		btnPunch.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				//shit
+				int dialogButton = JOptionPane.YES_NO_CANCEL_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(btnPunch, "Record Time Stamp?\nPrevious Punch: "+Employee.getPunch(Login.currentUser)+" hours ago","Warning",dialogButton);
+				
+				
+				if(dialogResult == JOptionPane.YES_OPTION){
+					Date dateobj = new Date();
+					previous = dateobj;
+					String[] d = df.format(dateobj).split(":");
+					
+					if(Employee.getPunch(Login.currentUser) == null || Employee.getPunch(Login.currentUser) == 0.0){
+						Employee.setPunch((Double.parseDouble(d[0])+(Double.parseDouble(d[1])/60)), Login.currentUser);
+					}
+					else{
+						System.out.println("Punch found: "+Employee.getPunch(Login.currentUser)); 
+						Double temp = ((Double.parseDouble(d[0])+(Double.parseDouble(d[1])/60)) - Employee.getPunch(Login.currentUser));
+						Double tempHours = Employee.getHours(Login.currentUser);
+						Employee.setHours((tempHours+temp), Login.currentUser); 
+						Employee.setPunch(0.0,Login.currentUser);
+					}
+				}
 			}
 		});
 		
@@ -102,12 +126,29 @@ public class AdminUI extends JFrame {
 		btnUpdateClient.setBounds(1036, 504, 200, 200);
 		contentPane.add(btnUpdateClient);
 		
-		btnWorkorders.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				//shit
+		JButton btnAdminTools = new JButton("Admin Tools");
+		btnAdminTools.setBounds(1300, 784, 117, 29);
+		contentPane.add(btnAdminTools);
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(1300, 30, 117, 29);
+		contentPane.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login.go();
 				
 			}
 		});
+		
+		btnAdminTools.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AdminTools.go();
+			}
+		});
+
+		
 		
 	}
 }
