@@ -62,6 +62,7 @@ public class EmployeeUI extends JFrame {
 		contentPane.add(btnCreateNewWork);	
 		btnCreateNewWork.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent work){
+				NewWorkOrderUI.go();
 			}
 		});
 		
