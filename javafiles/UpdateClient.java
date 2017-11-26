@@ -171,6 +171,11 @@ public class UpdateClient extends JFrame {
 		JButton btnAddCar = new JButton("Add Car");
 		btnAddCar.setBounds(54, 215, 117, 29);
 		contentPane.add(btnAddCar);
+		btnAddCar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ev){
+				AddCar.go(emailField.getText());
+			}
+		});
 		
 		JButton btnEditCar = new JButton("Edit Car");
 		btnEditCar.setBounds(225, 215, 117, 29);
