@@ -133,5 +133,15 @@ public class MechanicUI extends JFrame {
 			}
 		});
 		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(1300, 30, 117, 29);
+		contentPane.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login.go();
+				
+			}
+		});
 	}
 }
