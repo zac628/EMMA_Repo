@@ -125,6 +125,12 @@ public class MechanicUI extends JFrame {
 		JButton btnUpdateClient = new JButton("Update Client");
 		btnUpdateClient.setBounds(1036, 504, 200, 200);
 		contentPane.add(btnUpdateClient);
+		btnUpdateClient.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				UpdateClient.go();
+				
+			}
+		});
 		
 		btnWorkorders.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){

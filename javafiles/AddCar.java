@@ -21,26 +21,24 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 
-public class ContactForm extends JFrame {
+public class AddCar extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField txtFirstName;
-	private JTextField txtLastName;
-	private JTextField txtPhoneNumber;
-	private JTextField txtEmail;
-	private JTextField txtAddress;
 	private JTextField txtCarModel;
 	private JTextField txtCarColor;
 	private JTextField txtPlate;
+	private JTextField emailField;
+	static String currentEmail = "";
 
 	/**
 	 * Launch the application.
 	 */
-	public static void go() {
+	public static void go(String email) {
+		currentEmail = email;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ContactForm frame = new ContactForm();
+					AddCar frame = new AddCar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -52,7 +50,7 @@ public class ContactForm extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ContactForm() {
+	public AddCar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 301);
 		contentPane = new JPanel();
@@ -60,114 +58,86 @@ public class ContactForm extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		txtFirstName = new JTextField();
-		txtFirstName.setText("");
-		txtFirstName.setBounds(22, 31, 179, 26);
-		contentPane.add(txtFirstName);
-		txtFirstName.setColumns(10);
-		
-		JLabel lblNewLabel = new JLabel("First Name*");
-		lblNewLabel.setBounds(22, 18, 84, 16);
-		contentPane.add(lblNewLabel);
-		
-		txtLastName = new JTextField();
-		txtLastName.setBounds(223, 34, 179, 26);
-		contentPane.add(txtLastName);
-		txtLastName.setColumns(10);
-		
-		JLabel lblNewLabel_1 = new JLabel("Last Name*");
-		lblNewLabel_1.setBounds(223, 18, 84, 16);
-		contentPane.add(lblNewLabel_1);
-		
-		txtPhoneNumber = new JTextField();
-		txtPhoneNumber.setBounds(22, 76, 179, 26);
-		contentPane.add(txtPhoneNumber);
-		txtPhoneNumber.setColumns(10);
-		
-		JLabel lblNewLabel_2 = new JLabel("Phone Number*");
-		lblNewLabel_2.setBounds(22, 59, 98, 16);
-		contentPane.add(lblNewLabel_2);
-		
-		txtEmail = new JTextField();
-		txtEmail.setBounds(223, 76, 179, 26);
-		contentPane.add(txtEmail);
-		txtEmail.setColumns(10);
-		
-		JLabel lblNewLabel_3 = new JLabel("Email");
-		lblNewLabel_3.setBounds(223, 59, 61, 16);
-		contentPane.add(lblNewLabel_3);
-		
-		txtAddress = new JTextField();
-		txtAddress.setBounds(22, 131, 262, 26);
-		contentPane.add(txtAddress);
-		txtAddress.setColumns(10);
-		
-		JLabel lblNewLabel_4 = new JLabel("Address");
-		lblNewLabel_4.setBounds(22, 114, 61, 16);
-		contentPane.add(lblNewLabel_4);
-		
 		JComboBox CarYearcomboBox = new JComboBox();
 		CarYearcomboBox.setModel(new DefaultComboBoxModel(new String[] {"1970", "1971", "1972", "1973", "1974", "1975", "1976", "1977", "1978", "1979", "1980", "1981", "1982", "1983", "1984", "1985", "1986", "1987", "1988", "1989", "1990", "1991", "1992", "1993", "1994", "1995", "1996", "1997", "1998", "1999", "2000", "2001", "2002", "2003", "2004", "2005", "2006", "2007", "2008", "2009", "2010", "2011", "2012", "2013", "2014", "2015", "2016", "2017", "2018"}));
 		CarYearcomboBox.setToolTipText("");
-		CarYearcomboBox.setBounds(306, 132, 96, 27);
+		CarYearcomboBox.setBounds(54, 141, 96, 27);
 		contentPane.add(CarYearcomboBox);
 		
 		JLabel lblNewLabel_5 = new JLabel("Car Year");
-		lblNewLabel_5.setBounds(306, 114, 61, 16);
+		lblNewLabel_5.setBounds(54, 123, 61, 16);
 		contentPane.add(lblNewLabel_5);
 		
 		JComboBox comboBox = new JComboBox();
 		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Acura", "Alfa Romeo", "AMC", "Ariel", "Aston Martin", "Audi", "Austin Healey", "Bentley", "BMW", "Bugatti", "Buick", "Cadillac", "Callaway", "Caterham", "Cheverlot", "Chrysler", "Daewoo", "Datsun", "Dodge", "Ferrari", "Fiat", "Ford ", "Genesis", "Geo", "GMC", "Honda", "Hummer", "Hyundai", "Infiniti", "Isuzu", "Jaguar", "Jeep", "Kia", "Lamborghini", "Land Rover", "Lexus", "Lincoln", "Lotus", "Maserati", "Maybach", "Mazda", "Mclaren ", "Mercedes", "Mercurt", "Mini", "Mitisubishi", "Nissian", "Noble", "Oldsmobile", "Plymouth", "Pontiac", "Porsche", "Proton ", "Ram", "Rolls Royce", "Saab", "Saleen", "Saturn ", "Scion", "Shelby", "Smart", "Suburu", "Suzuki", "Telsa", "Toyota", "VW", "Volvo", ""}));
-		comboBox.setBounds(22, 184, 98, 27);
+		comboBox.setBounds(52, 86, 98, 27);
 		contentPane.add(comboBox);
 		
 		JLabel lblNewLabel_6 = new JLabel("Car Make ");
-		lblNewLabel_6.setBounds(22, 169, 62, 16);
+		lblNewLabel_6.setBounds(52, 71, 62, 16);
 		contentPane.add(lblNewLabel_6);
 		
 		txtCarModel = new JTextField();
-		txtCarModel.setBounds(132, 183, 115, 26);
+		txtCarModel.setBounds(162, 85, 115, 26);
 		contentPane.add(txtCarModel);
 		txtCarModel.setColumns(10);
 		
 		JLabel lblNewLabel_7 = new JLabel("Car Model");
-		lblNewLabel_7.setBounds(132, 169, 72, 16);
+		lblNewLabel_7.setBounds(162, 71, 72, 16);
 		contentPane.add(lblNewLabel_7);
 		
 		txtCarColor = new JTextField();
-		txtCarColor.setBounds(277, 183, 128, 26);
+		txtCarColor.setBounds(162, 142, 128, 26);
 		contentPane.add(txtCarColor);
 		txtCarColor.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Car Color ");
-		lblNewLabel_8.setBounds(277, 169, 71, 16);
+		lblNewLabel_8.setBounds(162, 128, 71, 16);
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnCompleteForm = new JButton("Complete");
-		btnCompleteForm.setBounds(285, 233, 117, 29);
+		btnCompleteForm.setBounds(311, 233, 117, 29);
 		contentPane.add(btnCompleteForm);
 		
 		txtPlate = new JTextField();
-		txtPlate.setBounds(22, 233, 179, 26);
+		txtPlate.setBounds(52, 198, 179, 26);
 		contentPane.add(txtPlate);
 		txtPlate.setColumns(10);
 		
 		JLabel lblPlateNumber = new JLabel("Plate Number");
-		lblPlateNumber.setBounds(22, 215, 84, 16);
+		lblPlateNumber.setBounds(52, 180, 84, 16);
 		contentPane.add(lblPlateNumber);
+		
+		emailField = new JTextField();
+		emailField.setBounds(115, 17, 220, 26);
+		contentPane.add(emailField);
+		emailField.setColumns(10);
+		
+		JLabel lblEmail = new JLabel("Client Email");
+		lblEmail.setBounds(183, 6, 84, 16);
+		contentPane.add(lblEmail);
 		
 		btnCompleteForm.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
-				
-				String sql = "INSERT INTO Client(FNAME,LNAME,NUMBER,ADDRESS,EMAIL,CAR1) VALUES(?,?,?,?,?,?)";
+				String car = "CAR2";
+				String[] cars = (Car.getClientCars(currentEmail));
+				if(!cars[1].equals(null)){
+					car = "CAR3";
+					if(!cars[2].equals(null)){
+						car = "CAR4";
+						if(!cars[3].equals(null)){
+							car = "CAR5";
+							if(!cars[4].equals(null)){
+								car = "x";
+							}
+						}
+					}
+				}if(!car.equals("x")){
+				String sql = "UPDATE Client SET "+car+" = ? WHERE EMAIL = ?";
 				try (Connection conn = DriverManager.getConnection(DBTools.url);
 			                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-			            pstmt.setString(1, txtFirstName.getText());
-			            pstmt.setString(2,txtLastName.getText());
-			            pstmt.setString(3, txtPhoneNumber.getText());
-			            pstmt.setString(4, txtAddress.getText());
-			            pstmt.setString(5, txtEmail.getText());
-			            pstmt.setString(6, txtPlate.getText());
+			            pstmt.setString(1, txtPlate.getText());
+			            pstmt.setString(2, currentEmail); 
 			            pstmt.executeUpdate();
 			  
 			        } 
@@ -179,8 +149,8 @@ public class ContactForm extends JFrame {
 			                PreparedStatement pstmt = conn.prepareStatement(sql2)) {
 					 	pstmt.setString(1,txtPlate.getText());
 			            pstmt.setString(2, CarYearcomboBox.getSelectedItem().toString());
-			            pstmt.setString(3, comboBox.getSelectedItem().toString());
-			            pstmt.setString(4, txtCarModel.getText());
+			            pstmt.setString(3, txtCarModel.getText());
+			            pstmt.setString(4, comboBox.getSelectedItem().toString());
 			            pstmt.setString(5, txtCarColor.getText());
 			            pstmt.executeUpdate();
 			  
@@ -189,6 +159,9 @@ public class ContactForm extends JFrame {
 			            System.out.println(e.getMessage());
 			        }
 				 JOptionPane.showMessageDialog(null, "Success");
+				}else{
+					 JOptionPane.showMessageDialog(null, "Too many cars");
+				}
 			}
 		});
 			

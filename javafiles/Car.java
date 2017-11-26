@@ -1,6 +1,51 @@
 import java.sql.*;
 
 public class Car {
+	public static String[] getClientCars(String email){
+		String sql = "SELECT CAR1,CAR2,CAR3,CAR4,CAR5 From Client " + "WHERE EMAIL = ?";
+		String[] fail = null;
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, email);
+			ResultSet rs = pstmt.executeQuery();
+			String[] temp = {
+					rs.getString("CAR1"),
+					rs.getString("CAR2"),
+					rs.getString("CAR3"),
+					rs.getString("CAR4"),
+					rs.getString("CAR5")
+					};
+			return temp;
+			
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+			
+			return fail;
+		}
+	}
+	
+	public static String[] getCarInfo(String email, String num){
+		String sql = "SELECT * From Car " + "WHERE PLATE = ?";
+		String[] fail = null;
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, num);
+			ResultSet rs = pstmt.executeQuery();
+			String[] temp = {
+					rs.getString("PLATE"),
+					rs.getString("YEAR"),
+					rs.getString("MAKE"),
+					rs.getString("MODEL"),
+					rs.getString("COLOR")
+			};
+			return temp;
+			
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+			return fail;
+		}
+	}
+	
 	public static void setPlate(String desired, String current){
 		String sql = "UPDATE Car SET PLATE = ?" + "WHERE PLATE = ?";
 		try (Connection conn = DriverManager.getConnection(DBTools.url);
