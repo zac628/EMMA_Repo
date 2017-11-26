@@ -12,6 +12,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
@@ -24,7 +27,8 @@ import javax.swing.JButton;
 public class EmployeeUI extends JFrame {
 
 	private JPanel contentPane;
-
+	DateFormat df = new SimpleDateFormat("HH:mm");
+	Date previous = new Date();
 
 	/**
 	 * Launch the application.
@@ -81,9 +85,51 @@ public class EmployeeUI extends JFrame {
 		JButton btnSale = new JButton("Sale");
 		btnSale.setBounds(837, 518, 406, 93);
 		contentPane.add(btnSale);
+		
 		btnSale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent sale) {
 			}
 		});
+		
+		JButton btnPunch = new JButton("Record Time Stamp");
+		btnPunch.setBounds(522, 382, 406, 93);
+		contentPane.add(btnPunch);
+		
+		btnPunch.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				int dialogButton = JOptionPane.YES_NO_CANCEL_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(btnPunch, "Record Time Stamp?\nPrevious Punch: "+Employee.getPunch(Login.currentUser)+" hours ago","Warning",dialogButton);
+				
+				
+				if(dialogResult == JOptionPane.YES_OPTION){
+					Date dateobj = new Date();
+					previous = dateobj;
+					String[] d = df.format(dateobj).split(":");
+					
+					if(Employee.getPunch(Login.currentUser) == null || Employee.getPunch(Login.currentUser) == 0.0){
+						Employee.setPunch((Double.parseDouble(d[0])+(Double.parseDouble(d[1])/60)), Login.currentUser);
+					}
+					else{
+						System.out.println("Punch found: "+Employee.getPunch(Login.currentUser)); 
+						Double temp = ((Double.parseDouble(d[0])+(Double.parseDouble(d[1])/60)) - Employee.getPunch(Login.currentUser));
+						Double tempHours = Employee.getHours(Login.currentUser);
+						Employee.setHours((tempHours+temp), Login.currentUser); 
+						Employee.setPunch(0.0,Login.currentUser);
+					}
+				}
+			}
+		});
+		
+		JButton btnLogout = new JButton("Logout");
+		btnLogout.setBounds(1300, 30, 117, 29);
+		contentPane.add(btnLogout);
+		btnLogout.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				Login.go();
+				
+			}
+		});
+		
 	}
 }	
