@@ -30,7 +30,7 @@ public class WorkOrder {
 	}
 	
 	public static int getID(){
-		String sql = "SELECT INTS From Variable " + "WHERE NAME = ?";
+		String sql = "SELECT INTS From Variables " + "WHERE NAME = ?";
 		int id = -1;
 		try (Connection conn = DriverManager.getConnection(DBTools.url);
 				PreparedStatement pstmt = conn.prepareStatement(sql);){
@@ -68,25 +68,6 @@ public class WorkOrder {
 				
 	}
 	
-	public static void shiftOrders(String plate){
-		String sql = "SELECT WO1,WO2,WO3,WO4 From Car " + "WHERE EMAIL = ?";
-		
-		try (Connection conn = DriverManager.getConnection(DBTools.url);
-				PreparedStatement pstmt = conn.prepareStatement(sql);){
-			pstmt.setString(1, plate);
-			ResultSet rs = pstmt.executeQuery();
-			String[] temp = {
-					rs.getString("CAR1"),
-					rs.getString("CAR2"),
-					rs.getString("CAR3"),
-					rs.getString("CAR4"),
-					rs.getString("CAR5")
-					};
-			
-			
-		} catch(SQLException e){
-			System.out.println(e.getMessage());
-		}
-	}
+
 			
 }

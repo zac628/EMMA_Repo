@@ -113,5 +113,38 @@ public class Car {
 		}
 				
 	}
+	
+	public static void shiftOrders(String plate){
+		String sql = "SELECT WO1,WO2,WO3,WO4 From Car " + "WHERE EMAIL = ?";
+		int[] values = new int[4];
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, plate);
+			ResultSet rs = pstmt.executeQuery();
+			
+					values[0] = rs.getInt("CAR1");
+					values[1] = rs.getInt("CAR2");
+					values[2] = rs.getInt("CAR3");
+					values[3] = rs.getInt("CAR4");
+					
+			
+			
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		String sql2 = "UPDATE Car WO2 = ?, WO3 = ?, WO4 = ?, WO5 = ?" + "WHERE PLATE = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql2);){
+					pstmt.setInt(1, values[0]);
+					pstmt.setInt(2, values[1]);
+					pstmt.setInt(3, values[2]);
+					pstmt.setInt(4, values[3]);
+					pstmt.setString(5, plate);
+					pstmt.executeUpdate();
+				} catch(SQLException e){
+					System.out.println(e.getMessage());
+				}
+	}
 }
 
