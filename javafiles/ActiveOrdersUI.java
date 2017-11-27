@@ -44,7 +44,7 @@ public class ActiveOrdersUI extends JFrame {
 	 */
 	public ActiveOrdersUI() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(1, 1, 800, 565);
+		setBounds(1, 1, 1450, 880);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
