@@ -28,7 +28,7 @@ public class AddCar extends JFrame {
 	private JTextField txtCarColor;
 	private JTextField txtPlate;
 	private JTextField emailField;
-	static String currentEmail = "";
+	static String currentEmail;
 
 	/**
 	 * Launch the application.
@@ -108,7 +108,7 @@ public class AddCar extends JFrame {
 		lblPlateNumber.setBounds(52, 180, 84, 16);
 		contentPane.add(lblPlateNumber);
 		
-		emailField = new JTextField();
+		emailField = new JTextField(currentEmail);
 		emailField.setBounds(115, 17, 220, 26);
 		contentPane.add(emailField);
 		emailField.setColumns(10);
@@ -119,20 +119,18 @@ public class AddCar extends JFrame {
 		
 		btnCompleteForm.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
-				String car = "CAR2";
+				String car = "x";
 				String[] cars = (Car.getClientCars(currentEmail));
-				if(!cars[1].equals(null)){
-					car = "CAR3";
-					if(!cars[2].equals(null)){
-						car = "CAR4";
-						if(!cars[3].equals(null)){
-							car = "CAR5";
-							if(!cars[4].equals(null)){
-								car = "x";
-							}
-						}
+				for(int i=1; i<5;i++){
+					String temp = cars[i];
+					if(temp == null){
+						car = "CAR"+(i+1);
+						break;
 					}
-				}if(!car.equals("x")){
+					
+				}
+				
+				if(!car.equals("x")){
 				String sql = "UPDATE Client SET "+car+" = ? WHERE EMAIL = ?";
 				try (Connection conn = DriverManager.getConnection(DBTools.url);
 			                PreparedStatement pstmt = conn.prepareStatement(sql)) {
@@ -162,6 +160,7 @@ public class AddCar extends JFrame {
 				}else{
 					 JOptionPane.showMessageDialog(null, "Too many cars");
 				}
+				dispose();
 			}
 		});
 			

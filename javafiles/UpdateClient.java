@@ -189,6 +189,11 @@ public class UpdateClient extends JFrame {
 		JButton btnRemoveCar = new JButton("Remove Car");
 		btnRemoveCar.setBounds(396, 215, 117, 29);
 		contentPane.add(btnRemoveCar);
+		btnRemoveCar.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ev){
+				RemoveCar.go(emailField.getText());
+			}
+		});
 		
 		btnCancel.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){

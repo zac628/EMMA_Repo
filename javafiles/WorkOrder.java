@@ -1,43 +1,48 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class WorkOrder {
-
-private Car car;
-private Client client;
-private String orderDescription;
-private int orderNumber;
-private static int count = 0;
-
-	public WorkOrder(Client cl, Car c){
-		client = cl;
-		car = c;
-		orderNumber = ++count;
-	}
-	public WorkOrder(Client cl, Car c, String o){
-		car = c;
-		client = cl;
-		orderDescription = o;
-		orderNumber = ++count;
-	}
-	public String getOrderDescription(){
-		return orderDescription;
-	}
-	public Car getCar(){
-		return car;
-	}
-	public Client getClient(){
-		return client;
-	}
-	public void setOrderDescription(String s){
-		orderDescription = s;
+	
+	public static int getID(){
+		String sql = "SELECT INTS From Variable " + "WHERE NAME = ?";
+		int id = -1;
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, "WorkOrderID");
+			ResultSet rs = pstmt.executeQuery();
+			id = rs.getInt("INTS");
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		String sql2 = "UPDATE Variables SET INTS = ?" + "WHERE NAME =?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql2)){
+			pstmt.setInt(1, (id + 1));
+			pstmt.setString(2, "WorkOrderID");
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+		
+		return id;
+		
 	}
 	
-	public int getOrderNumber(){
-		return orderNumber;
+	public static void setSDescription(String description, int id){
+		String sql = "UPDATE WorkOrders SET SDESCRIPTION = ?" + "WHERE NUMBER = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, description);
+			pstmt.setInt(2, id);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
 	}
-	public void assignWorkOrder(Mechanic m){
-		//Remove this workorder from the list of workorders in the database after assigning it to a mechanic
-		m.addOrder(orderNumber);
-	}
-	public void removeWorkOrder(Mechanic m){
-		m.removeOrder(orderNumber);
-	}
+			
 }

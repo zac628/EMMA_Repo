@@ -62,6 +62,7 @@ public class EmployeeUI extends JFrame {
 		contentPane.add(btnCreateNewWork);	
 		btnCreateNewWork.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent work){
+				NewWorkOrderUI.go();
 			}
 		});
 		
@@ -77,8 +78,10 @@ public class EmployeeUI extends JFrame {
 		JButton btnUpdateClient = new JButton("Update Client");
 		btnUpdateClient.setBounds(837, 212, 406, 93);
 		contentPane.add(btnUpdateClient);
-		btnUpdateClient.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent update) {
+		btnUpdateClient.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				UpdateClient.go();
+				
 			}
 		});
 		

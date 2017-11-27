@@ -74,7 +74,7 @@ public class MechanicUI extends JFrame {
 		JButton btnNewWorkorder = new JButton("New Workorder");
 		btnNewWorkorder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//shit
+				NewWorkOrderUI.go();
 			}
 		});
 		btnNewWorkorder.setBounds(212, 504, 200, 200);

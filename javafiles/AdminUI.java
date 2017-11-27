@@ -74,7 +74,7 @@ public class AdminUI extends JFrame {
 		JButton btnNewWorkorder = new JButton("New Workorder");
 		btnNewWorkorder.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				//shit
+				NewWorkOrderUI.go();
 			}
 		});
 		btnNewWorkorder.setBounds(212, 504, 200, 200);
@@ -125,6 +125,12 @@ public class AdminUI extends JFrame {
 		JButton btnUpdateClient = new JButton("Update Client");
 		btnUpdateClient.setBounds(1036, 504, 200, 200);
 		contentPane.add(btnUpdateClient);
+		btnUpdateClient.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent event){
+				UpdateClient.go();
+				
+			}
+		});
 		
 		JButton btnAdminTools = new JButton("Admin Tools");
 		btnAdminTools.setBounds(1300, 784, 117, 29);
