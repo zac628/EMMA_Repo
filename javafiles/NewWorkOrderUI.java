@@ -107,21 +107,52 @@ public class NewWorkOrderUI extends JFrame {
 		contentPane.add(btnDone);
 		btnDone.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent done){
-				
-				 String sql = "INSERT INTO WorkOrders(PLATE, PDESCRIPTION, NOTES, NUMBER) VALUES(?,?,?,?)";
+				int id = WorkOrder.getID();
+				 String sql = "INSERT INTO WorkOrders(PLATE, PDESCRIPTION, NOTES, NUMBER, STATUS, EDATE) VALUES(?,?,?,?,?,?)";
 				        try (Connection conn = DriverManager.getConnection(DBTools.url);
 				                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 				            pstmt.setString(1, plateField.getText());
 				            pstmt.setString(2, pDescription.getText());
 				            pstmt.setString(3, notesField.getText());
-				            pstmt.setInt(4, WorkOrder.getID());
+				            pstmt.setInt(4, id);
+				            pstmt.setString(5, "Open");
+				            pstmt.setString(1, df.format(previous));
 				            pstmt.executeUpdate();
 				        } catch (SQLException e) {
 				            System.out.println(e.getMessage());
 				        }
-				   JOptionPane.showMessageDialog(null, "New Work Order Created");
-			       dispose(); 
-			}
-		});
-	}	
-}	
+				        
+				        String[] orderSlots = WorkOrder.getOrders(plateField.getText());
+				        String wo = "x";
+				        for(int i = 0; i < 5; i++){
+				        	if(orderSlots[i] == null){
+				        		wo = "WO" + (i + 1);
+				        		break;
+				        	}
+				        }
+				        
+				        String sql2 = new String();
+				        if(wo != "x"){
+				        	Car.shiftOrders(plateField.getText());
+				        	sql2 = "UPDATE Car SET WO1 = ?" + "WHERE PLATE = ?";
+
+				        }else{
+				        	sql2 = "UPDATE Car SET" + wo + "  = ?" + "WHERE PLATE = ?";
+				        }
+			        	try (Connection conn = DriverManager.getConnection(DBTools.url);
+			        			PreparedStatement pstmt = conn.prepareStatement(sql2)){
+			        		pstmt.setInt(1, id);
+			        		pstmt.setString(2, plateField.getText());
+			        		pstmt.executeUpdate();
+			        	} catch(SQLException e){
+			        		System.out.println(e.getMessage());
+			        	}
+			        
+							
+			        
+			   JOptionPane.showMessageDialog(null, "New Work Order Created");
+		       dispose(); 
+		}
+	});	
+	}
+}

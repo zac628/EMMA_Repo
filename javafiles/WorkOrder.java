@@ -6,6 +6,29 @@ import java.sql.SQLException;
 
 public class WorkOrder {
 	
+	public static String[] getOrders(String plate){
+		String sql = "SELECT WO1,WO2,WO3,WO4,WO5 From CAR " + "WHERE PLATE = ?";
+		String[] fail = null;
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, plate);
+			ResultSet rs = pstmt.executeQuery();
+			String[] temp = {
+					rs.getString("WO1"),
+					rs.getString("WO2"),
+					rs.getString("WO3"),
+					rs.getString("WO4"),
+					rs.getString("WO5")
+					};
+			return temp;
+			
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+			
+			return fail;
+		}
+	}
+	
 	public static int getID(){
 		String sql = "SELECT INTS From Variable " + "WHERE NAME = ?";
 		int id = -1;
@@ -43,6 +66,27 @@ public class WorkOrder {
 			System.out.println(e.getMessage());
 		}
 				
+	}
+	
+	public static void shiftOrders(String plate){
+		String sql = "SELECT WO1,WO2,WO3,WO4 From Car " + "WHERE EMAIL = ?";
+		
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, plate);
+			ResultSet rs = pstmt.executeQuery();
+			String[] temp = {
+					rs.getString("CAR1"),
+					rs.getString("CAR2"),
+					rs.getString("CAR3"),
+					rs.getString("CAR4"),
+					rs.getString("CAR5")
+					};
+			
+			
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
 	}
 			
 }
