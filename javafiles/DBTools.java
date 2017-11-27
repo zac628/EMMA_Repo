@@ -48,7 +48,7 @@ public class DBTools {
 	    
 	    public static void insert(String u, String p, String d, String f, String l, double r) {
 	        String sql = "INSERT INTO User(USERNAME,PASSWORD,DESIGNATION,FNAME,LNAME,RATE) VALUES(?,?,?,?,?,?)";
-	        if(!testAll(u,p).equals("x")){
+	        if(testAll(u,p).equals("x")){
 		        try (Connection conn = DriverManager.getConnection(url);
 		                PreparedStatement pstmt = conn.prepareStatement(sql)) {
 		            pstmt.setString(1, u);

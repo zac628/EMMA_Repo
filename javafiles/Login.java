@@ -72,15 +72,6 @@ public class Login extends JFrame {
 		contentPane.add(txtPassword);
 		txtPassword.setColumns(10);
 		
-		JButton btnCreateUser = new JButton("Create User");
-		btnCreateUser.setBounds(162, 167, 117, 29);
-		contentPane.add(btnCreateUser);
-		
-		btnCreateUser.addActionListener(new ActionListener(){
-			public void actionPerformed(ActionEvent event){
-				CreateUser.go();
-			}
-		});
 			
 		btnLogin.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){

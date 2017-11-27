@@ -22,7 +22,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 
 
-public class UpdateCar extends JFrame {
+public class RemoveCar extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtEmail;
@@ -42,7 +42,7 @@ public class UpdateCar extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UpdateCar frame = new UpdateCar();
+					RemoveCar frame = new RemoveCar();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -54,7 +54,7 @@ public class UpdateCar extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UpdateCar() {
+	public RemoveCar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 450, 301);
 		contentPane = new JPanel();
@@ -127,9 +127,9 @@ public class UpdateCar extends JFrame {
 		lblNewLabel_8.setBounds(245, 154, 71, 16);
 		contentPane.add(lblNewLabel_8);
 		
-		JButton btnCompleteForm = new JButton("Complete");
-		btnCompleteForm.setBounds(285, 233, 117, 29);
-		contentPane.add(btnCompleteForm);
+		JButton btnDelete = new JButton("Delete This Car");
+		btnDelete.setBounds(262, 233, 140, 29);
+		contentPane.add(btnDelete);
 		
 		txtPlate = new JTextField();
 		txtPlate.setBounds(25, 172, 179, 26);
@@ -152,7 +152,7 @@ public class UpdateCar extends JFrame {
 		JButton btnGo = new JButton("Go");
 		btnGo.setBounds(231, 33, 56, 29);
 		contentPane.add(btnGo);
-		btnGo.addActionListener(new ActionListener() {
+		comboCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				String[] cars = (Car.getClientCars(currentEmail));
 				System.out.println(cars[0]+cars[1]+cars[2]+cars[3]+cars[4]); 
@@ -179,14 +179,31 @@ public class UpdateCar extends JFrame {
 			
 		});
 		
-		btnCompleteForm.addActionListener(new ActionListener(){
+		btnDelete.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
-				Car.setPlate(txtPlate.getText(), plate);
-				ClientOperations.setCar1(currentEmail, txtPlate.getText());
-				Car.setYear(comboYear.getSelectedItem().toString(), txtPlate.getText());
-				Car.setMake(comboMake.getSelectedItem().toString(),txtPlate.getText());
-				Car.setModel(txtCarModel.getText(), txtPlate.getText());
-				Car.setColor(txtCarColor.getText(), txtPlate.getText());
+				String tp = txtPlate.getText();
+				String cp = comboCar.getSelectedItem().toString();
+				String sql = "DELETE FROM Car " + "WHERE PLATE = ?";
+				try (Connection conn = DriverManager.getConnection(DBTools.url);
+						PreparedStatement pstmt = conn.prepareStatement(sql)){
+					pstmt.setString(1, txtPlate.getText());
+					pstmt.executeUpdate();
+				} catch(SQLException e){
+					System.out.println(e.getMessage());
+				}
+				if(cp == "CAR1"){
+					ClientOperations.setCar1(currentEmail, null); 
+				}else if(cp == "CAR2"){
+					ClientOperations.setCar2(currentEmail, null); 
+				}else if(cp == "CAR3"){
+					ClientOperations.setCar3(currentEmail, null); 
+				}else if(cp == "CAR4"){
+					ClientOperations.setCar4(currentEmail, null); 
+				}else if(cp == "CAR5"){
+					ClientOperations.setCar5(currentEmail, null); 
+				}
+				JOptionPane.showMessageDialog(null, "Success");
+				dispose();
 			}
 		});
 			

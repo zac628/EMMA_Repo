@@ -57,10 +57,10 @@ public class AdminTools extends JFrame {
 			}
 		});
 		
-		JButton btnPayroll = new JButton("Payroll Tools");
-		btnPayroll.setBounds(837, 212, 406, 93);
-		contentPane.add(btnPayroll);
-		btnPayroll.addActionListener(new ActionListener() {
+		JButton btnReports = new JButton("Reports");
+		btnReports.setBounds(837, 212, 406, 93);
+		contentPane.add(btnReports);
+		btnReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent update) {
 				//shit
 			}
