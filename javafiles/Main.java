@@ -20,8 +20,8 @@ public class Main {
     	//Login_VC();
     	
     	//EmployeeUI.go();
-    	
-    	Login.go();
+    	System.out.print(Reports.getLaborCost());
+    	//Login.go();
    
     }
 }
