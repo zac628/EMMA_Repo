@@ -134,7 +134,7 @@ public class MechanicUI extends JFrame {
 		
 		btnWorkorders.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				//shit
+				ListWorkorders.go();
 				
 			}
 		});
