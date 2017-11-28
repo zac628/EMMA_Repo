@@ -159,7 +159,7 @@ public class NewWorkOrderUI extends JFrame {
 					        	sql2 = "UPDATE Car SET WO1 = ?" + "WHERE PLATE = ?";
 	
 					        }else{
-					        	sql2 = "UPDATE Car SET" + wo + "  = ?" + "WHERE PLATE = ?";
+					        	sql2 = "UPDATE Car SET " + wo + "  = ?" + "WHERE PLATE = ?";
 					        }
 				        	try (Connection conn = DriverManager.getConnection(DBTools.url);
 				        			PreparedStatement pstmt = conn.prepareStatement(sql2)){

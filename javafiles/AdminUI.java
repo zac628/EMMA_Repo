@@ -66,7 +66,7 @@ public class AdminUI extends JFrame {
 		
 		btnSale.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
-				//shit
+				SaleUI.go();
 				
 			}
 		});

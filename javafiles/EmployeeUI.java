@@ -91,6 +91,7 @@ public class EmployeeUI extends JFrame {
 		
 		btnSale.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent sale) {
+				SaleUI.go();
 			}
 		});
 		
