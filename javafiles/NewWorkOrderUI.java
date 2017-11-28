@@ -3,6 +3,8 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.JTableHeader;
 import javax.swing.JTextField;
 import java.awt.Color;
 import java.awt.TextField;
@@ -11,13 +13,16 @@ import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import javax.swing.JComboBox;
 import javax.swing.JSpinner;
+import javax.swing.JTable;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
@@ -31,7 +36,7 @@ import javax.swing.JEditorPane;
 public class NewWorkOrderUI extends JFrame {
 
 	private JPanel contentPane;
-	DateFormat df = new SimpleDateFormat("MM-DD-YYYY");
+	DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 	Date previous = new Date();
 	private JTextField plateField;
 
@@ -107,51 +112,67 @@ public class NewWorkOrderUI extends JFrame {
 		contentPane.add(btnDone);
 		btnDone.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent done){
-				int id = WorkOrder.getID();
-				 String sql = "INSERT INTO WorkOrders(PLATE, PDESCRIPTION, NOTES, NUMBER, STATUS, EDATE) VALUES(?,?,?,?,?,?)";
-				        try (Connection conn = DriverManager.getConnection(DBTools.url);
-				                PreparedStatement pstmt = conn.prepareStatement(sql)) {
-				            pstmt.setString(1, plateField.getText());
-				            pstmt.setString(2, pDescription.getText());
-				            pstmt.setString(3, notesField.getText());
-				            pstmt.setInt(4, id);
-				            pstmt.setString(5, "Open");
-				            pstmt.setString(1, df.format(previous));
-				            pstmt.executeUpdate();
-				        } catch (SQLException e) {
-				            System.out.println(e.getMessage());
-				        }
-				        
-				        String[] orderSlots = WorkOrder.getOrders(plateField.getText());
-				        String wo = "x";
-				        for(int i = 0; i < 5; i++){
-				        	if(orderSlots[i] == null){
-				        		wo = "WO" + (i + 1);
-				        		break;
+				boolean c = false;
+				String fu = "SELECT PLATE FROM Car";
+				try (Connection conn = DriverManager.getConnection(DBTools.url);
+		                Statement stmt = conn.createStatement()) {
+		            ResultSet rs = stmt.executeQuery(fu);
+		            while(rs.next()){
+		            	if(plateField.getText().equals(rs.getString("PLATE"))){
+		            		c = true;
+		            		break;
+		            	}
+		            		
+		            }
+		        } 
+			 catch (SQLException e) {
+		            System.out.println(e.getMessage());
+		        }
+				if(c){
+					int id = WorkOrder.getID();
+					 String sql = "INSERT INTO WorkOrders(PLATE, PDESCRIPTION, NOTES, NUMBER, STATUS, EDATE) VALUES(?,?,?,?,?,?)";
+					        try (Connection conn = DriverManager.getConnection(DBTools.url);
+					                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+					            pstmt.setString(1, plateField.getText());
+					            pstmt.setString(2, pDescription.getText());
+					            pstmt.setString(3, notesField.getText());
+					            pstmt.setInt(4, id);
+					            pstmt.setString(5, "Open");
+					            pstmt.setString(6, df.format(previous));
+					            pstmt.executeUpdate();
+					        } catch (SQLException e) {
+					            System.out.println(e.getMessage());
+					        }
+					        
+					        String[] orderSlots = WorkOrder.getOrders(plateField.getText());
+					        String wo = "x";
+					        for(int i = 0; i < 5; i++){
+					        	if(orderSlots[i] == null){
+					        		wo = "WO" + (i + 1);
+					        		break;
+					        	}
+					        }
+					        
+					        String sql2 = new String();
+					        if(wo != "x"){
+					        	Car.shiftOrders(plateField.getText());
+					        	sql2 = "UPDATE Car SET WO1 = ?" + "WHERE PLATE = ?";
+	
+					        }else{
+					        	sql2 = "UPDATE Car SET" + wo + "  = ?" + "WHERE PLATE = ?";
+					        }
+				        	try (Connection conn = DriverManager.getConnection(DBTools.url);
+				        			PreparedStatement pstmt = conn.prepareStatement(sql2)){
+				        		pstmt.setInt(1, id);
+				        		pstmt.setString(2, plateField.getText());
+				        		pstmt.executeUpdate();
+				        	} catch(SQLException e){
+				        		System.out.println(e.getMessage());
 				        	}
-				        }
-				        
-				        String sql2 = new String();
-				        if(wo != "x"){
-				        	Car.shiftOrders(plateField.getText());
-				        	sql2 = "UPDATE Car SET WO1 = ?" + "WHERE PLATE = ?";
-
-				        }else{
-				        	sql2 = "UPDATE Car SET" + wo + "  = ?" + "WHERE PLATE = ?";
-				        }
-			        	try (Connection conn = DriverManager.getConnection(DBTools.url);
-			        			PreparedStatement pstmt = conn.prepareStatement(sql2)){
-			        		pstmt.setInt(1, id);
-			        		pstmt.setString(2, plateField.getText());
-			        		pstmt.executeUpdate();
-			        	} catch(SQLException e){
-			        		System.out.println(e.getMessage());
-			        	}
-			        
-							
-			        
-			   JOptionPane.showMessageDialog(null, "New Work Order Created");
-		       dispose(); 
+				        	JOptionPane.showMessageDialog(null, "New Work Order Created");
+			       dispose(); 
+			}else
+				JOptionPane.showMessageDialog(null, "Invalid Plate");
 		}
 	});	
 	}
