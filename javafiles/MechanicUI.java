@@ -149,5 +149,14 @@ public class MechanicUI extends JFrame {
 				
 			}
 		});
+		
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.setBounds(56, 784, 117, 29);
+		contentPane.add(btnInventory);
+		btnInventory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Inventory.go();
+			}
+		});
 	}
 }

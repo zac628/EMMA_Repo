@@ -135,6 +135,21 @@ public class AdminUI extends JFrame {
 		JButton btnAdminTools = new JButton("Admin Tools");
 		btnAdminTools.setBounds(1300, 784, 117, 29);
 		contentPane.add(btnAdminTools);
+		btnAdminTools.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+				AdminTools.go();
+			}
+		});
+		
+		JButton btnInventory = new JButton("Inventory");
+		btnInventory.setBounds(56, 784, 117, 29);
+		contentPane.add(btnInventory);
+		btnInventory.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Inventory.go();
+			}
+		});
 		
 		JButton btnLogout = new JButton("Logout");
 		btnLogout.setBounds(1300, 30, 117, 29);
@@ -146,15 +161,6 @@ public class AdminUI extends JFrame {
 				
 			}
 		});
-		
-		btnAdminTools.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				dispose();
-				AdminTools.go();
-			}
-		});
-
-		
 		
 	}
 }
