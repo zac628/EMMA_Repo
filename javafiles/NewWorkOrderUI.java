@@ -154,7 +154,7 @@ public class NewWorkOrderUI extends JFrame {
 					        }
 					        
 					        String sql2 = new String();
-					        if(wo != "x"){
+					        if(wo == "x"){
 					        	Car.shiftOrders(plateField.getText());
 					        	sql2 = "UPDATE Car SET WO1 = ?" + "WHERE PLATE = ?";
 	
@@ -170,7 +170,7 @@ public class NewWorkOrderUI extends JFrame {
 				        		System.out.println(e.getMessage());
 				        	}
 				        	JOptionPane.showMessageDialog(null, "New Work Order Created");
-			       dispose(); 
+				        	dispose(); 
 			}else
 				JOptionPane.showMessageDialog(null, "Invalid Plate");
 		}

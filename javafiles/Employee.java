@@ -130,5 +130,29 @@ public class Employee {
 		}
 				
 	}
+	public static String getFName(String username){
+		String sql = "SELECT FNAME From User " + "WHERE USERNAME = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
+			return rs.getString("FNAME");
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+			return "Assigned";
+		}
+	}
 	
+	public static String getLName(String username){
+		String sql = "SELECT LNAME From User " + "WHERE USERNAME = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
+			return rs.getString("LNAME");
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+			return "";
+		}
+	}
 }
