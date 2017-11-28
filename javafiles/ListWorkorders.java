@@ -120,6 +120,25 @@ public class ListWorkorders extends JFrame {
 		btnBack.setBounds(42, 6, 43, 29);
 		contentPane.add(btnBack);
 		
+		JLabel lblWo = new JLabel("WO#");
+		lblWo.setBounds(122, 24, 35, 16);
+		contentPane.add(lblWo);
+		
+		JLabel lblLicense = new JLabel("Plate #");
+		lblLicense.setBounds(162, 24, 53, 16);
+		contentPane.add(lblLicense);
+		
+		JLabel lblProblemDescription = new JLabel("Problem Description");
+		lblProblemDescription.setBounds(242, 24, 217, 16);
+		contentPane.add(lblProblemDescription);
+		
+		JLabel lblNotes = new JLabel("Notes");
+		lblNotes.setBounds(742, 24, 53, 16);
+		contentPane.add(lblNotes);
+		
+		JLabel lblStatus = new JLabel("Status");
+		lblStatus.setBounds(1222, 24, 43, 16);
+		contentPane.add(lblStatus);
 		
 	}
 	public static void showTable(){
@@ -142,6 +161,7 @@ public class ListWorkorders extends JFrame {
 	    		table.getColumnModel().getColumn(4).setMaxWidth(100);
 	    		table.getColumnModel().setColumnMargin(10);
 	    		table.setTableHeader(header);
+	    		table.setGridColor(Color.BLACK);
 	    		
 	    		
 
