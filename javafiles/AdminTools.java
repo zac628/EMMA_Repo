@@ -62,7 +62,7 @@ public class AdminTools extends JFrame {
 		contentPane.add(btnReports);
 		btnReports.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent update) {
-				//shit
+				ReportsUI.go();
 			}
 		});
 		
