@@ -100,7 +100,7 @@ public class SpecialOrder extends JFrame {
 		        } catch (SQLException e) {
 		            System.out.println(e.getMessage());
 		        }
-		        JOptionPane.showMessageDialog(null, "Succesfully added "+Integer.parseInt(txtOdr.getText())+"of "+txtPart.getText()+ " to orders");
+		        JOptionPane.showMessageDialog(null, "Succesfully added "+Integer.parseInt(txtOdr.getText())+" of "+txtPart.getText()+ " to orders");
 		        dispose();
 			}
 		});

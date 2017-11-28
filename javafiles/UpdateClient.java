@@ -60,7 +60,7 @@ public class UpdateClient extends JFrame {
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setText("");
-		txtFirstName.setBounds(11, 66, 179, 26);
+		txtFirstName.setBounds(11, 72, 179, 26);
 		contentPane.add(txtFirstName);
 		txtFirstName.setColumns(10);
 		
