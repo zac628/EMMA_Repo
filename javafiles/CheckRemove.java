@@ -22,22 +22,27 @@ import javax.swing.JButton;
 import javax.swing.JPasswordField;
 
 
-public class Login extends JFrame {
+public class CheckRemove extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
 	
 	static String currentUser = "No User";
 	private JPasswordField txtPassword;
+	private JLabel lblAdminUsername;
+	private JLabel lblAdminPassword;
+	private JButton btnCancel;
+	private static String part;
 	
 	/**
 	 * Launch the application.
 	 */
-	public static void go() {
+	public static void go(String p) {
+		part = p;
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					Login frame = new Login();
+					CheckRemove frame = new CheckRemove();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -49,52 +54,63 @@ public class Login extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public Login() {
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	public CheckRemove() {
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(500, 289, 450, 301);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(166, 147, 117, 29);
-		contentPane.add(btnLogin);
+		JButton btnContinue = new JButton("Continue");
+		btnContinue.setBounds(166, 147, 117, 29);
+		contentPane.add(btnContinue);
 		
 		txtUsername = new JTextField();
-		txtUsername.setText("Username");
 		txtUsername.setBounds(160, 71, 124, 26);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 		
 		txtPassword = new JPasswordField();
-		txtPassword.setText("Password");
-		txtPassword.setBounds(160, 109, 124, 26);
+		txtPassword.setBounds(160, 111, 124, 26);
 		contentPane.add(txtPassword);
 		
+		lblAdminUsername = new JLabel("Admin Username");
+		lblAdminUsername.setBounds(166, 52, 117, 16);
+		contentPane.add(lblAdminUsername);
+		
+		lblAdminPassword = new JLabel("Admin Password");
+		lblAdminPassword.setBounds(164, 96, 117, 16);
+		contentPane.add(lblAdminPassword);
+		
+		btnCancel = new JButton("Cancel");
+		btnCancel.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
+		btnCancel.setBounds(166, 188, 117, 29);
+		contentPane.add(btnCancel);
+		
 			
-		btnLogin.addActionListener(new ActionListener(){
+		btnContinue.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
-				
 				if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("A")){
-					//JOptionPane.showMessageDialog(null, infoMessage, "InfoBox: " + titleBar, JOptionPane.INFORMATION_MESSAGE);
-					AdminUI.go();
-					currentUser = txtUsername.getText();
+					String sql = "DELETE FROM Inventory " + "WHERE PART = ?";
+					try (Connection conn = DriverManager.getConnection(DBTools.url);
+							PreparedStatement pstmt = conn.prepareStatement(sql)){
+						pstmt.setString(1, part);
+						pstmt.executeUpdate();
+					} catch(SQLException e){
+						System.out.println(e.getMessage());
+					}
+					JOptionPane.showMessageDialog(null, "Success");
 					dispose();
-				}else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("M")){
-					MechanicUI.go();
-					currentUser = txtUsername.getText();
-					dispose();
+
+				}else{
+					JOptionPane.showMessageDialog(btnContinue, "Invalid Credentials");
 				}
-				else if(DBTools.testAll(txtUsername.getText(), txtPassword.getText()).equals("E")){
-					EmployeeUI.go();
-					currentUser = txtUsername.getText();
-					dispose();
-				}else
-					JOptionPane.showMessageDialog(null, "Record Not Found");
-				//DBTools.insert(un1.getText(), p1.getText());
-				}
-			
+			}
 		});
 			
 	}
