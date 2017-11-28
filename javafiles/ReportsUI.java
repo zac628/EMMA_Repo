@@ -31,7 +31,7 @@ import java.text.*;
 public class ReportsUI extends JFrame {
 
 	private JPanel contentPane;
-	DateFormat df = new SimpleDateFormat("MM-DD-YYYY");
+	DateFormat df = new SimpleDateFormat("MM-dd-yyyy");
 	Date previous = new Date();
 
 	/**
@@ -87,6 +87,11 @@ public class ReportsUI extends JFrame {
 		btnFinalizePayPeriod.setFont(new Font("Arial", Font.PLAIN, 30));
 		btnFinalizePayPeriod.setBounds(15, 246, 346, 67);
 		contentPane.add(btnFinalizePayPeriod);
+		
+		JLabel lblDate = new JLabel("Date: " + df.format(previous));
+		lblDate.setFont(new Font("Arial", Font.PLAIN, 24));
+		lblDate.setBounds(463, 16, 300, 36);
+		contentPane.add(lblDate);
 		btnFinalizePayPeriod.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent done){
 				int dialogButton = JOptionPane.YES_NO_CANCEL_OPTION;
@@ -106,7 +111,7 @@ public class ReportsUI extends JFrame {
 		        		System.out.println(e.getMessage());
 		        	}
 					
-					String sql2 = "UPDATE Inventory SET ORDER =?";
+					String sql2 = "UPDATE Inventory SET ODR =?";
 					try (Connection conn = DriverManager.getConnection(DBTools.url);
 		        			PreparedStatement pstmt = conn.prepareStatement(sql2)){
 		        		pstmt.setInt(1, 0);

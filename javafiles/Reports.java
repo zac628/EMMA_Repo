@@ -53,13 +53,13 @@ public class Reports {
 		
 
 		
-		String sql = "SELECT ORDER,PRICE From Inventory";
+		String sql = "SELECT ODR,PRICE From Inventory";
 		try (Connection conn = DriverManager.getConnection(DBTools.url);
 				Statement stmt = conn.createStatement();){
 			ResultSet rs = stmt.executeQuery(sql);
 			
 			while(rs.next()){
-				inventoryCost += rs.getInt("ORDER") * rs.getDouble("PRICE");
+				inventoryCost += rs.getInt("ODR") * rs.getDouble("PRICE");
 			}
 			
 			
