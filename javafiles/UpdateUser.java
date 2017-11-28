@@ -125,6 +125,7 @@ public class UpdateUser extends JFrame {
 		btnUNComit.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Employee.setUsername(txtUsername.getText(), usernameField.getText()); 
+				Mechanic.setUsername(txtUsername.getText(), usernameField.getText());
 				usernameField.setText(txtUsername.getText());
 				btnUNComit.setText("Done");
 				btnCancel.setText("Done");

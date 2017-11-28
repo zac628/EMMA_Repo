@@ -103,6 +103,7 @@ public class CreateUser extends JFrame {
 		btnCreateUser.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				DBTools.insert(txtUsername.getText(),txtPassword.getText(),comboBox.getSelectedItem().toString(),txtFirstName.getText(),txtLastName.getText(),Double.parseDouble(txtPayRatehr.getText()));
+				Mechanic.insert(txtUsername.getText()); 
 				JOptionPane.showMessageDialog(null, "New User Created");
 			}
 		});
