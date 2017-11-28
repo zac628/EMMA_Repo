@@ -65,22 +65,22 @@ public class ReportsUI extends JFrame {
 		
 		JLabel lblTotalRevenue = new JLabel("Total Revenue: $" + formatter.format(Reports.getRevenue()));
 		lblTotalRevenue.setFont(new Font("Arial", Font.PLAIN, 24));
-		lblTotalRevenue.setBounds(15, 16, 208, 36);
+		lblTotalRevenue.setBounds(15, 16, 371, 36);
 		contentPane.add(lblTotalRevenue);
 		
 		JLabel lblLaborCost = new JLabel("Labor Cost: $" + formatter.format(Reports.getLaborCost()));
 		lblLaborCost.setFont(new Font("Arial", Font.PLAIN, 24));
-		lblLaborCost.setBounds(15, 68, 208, 36);
+		lblLaborCost.setBounds(15, 68, 371, 36);
 		contentPane.add(lblLaborCost);
 		
 		JLabel lblInventoryCost = new JLabel("Inventory Cost: $" + formatter.format(Reports.getInventoryCost()));
 		lblInventoryCost.setFont(new Font("Arial", Font.PLAIN, 24));
-		lblInventoryCost.setBounds(15, 120, 208, 36);
+		lblInventoryCost.setBounds(15, 120, 371, 36);
 		contentPane.add(lblInventoryCost);
 		
 		JLabel lblTotalProfit = new JLabel("Total Profit: $" + formatter.format(Reports.getProfit()));
 		lblTotalProfit.setFont(new Font("Arial", Font.PLAIN, 30));
-		lblTotalProfit.setBounds(15, 172, 239, 58);
+		lblTotalProfit.setBounds(15, 172, 371, 58);
 		contentPane.add(lblTotalProfit);
 		
 		JButton btnFinalizePayPeriod = new JButton("Finalize Pay Period");
@@ -89,18 +89,45 @@ public class ReportsUI extends JFrame {
 		contentPane.add(btnFinalizePayPeriod);
 		btnFinalizePayPeriod.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent done){
-				String sql = "UPDATE User SET HOURS =?";
-				try (Connection conn = DriverManager.getConnection(DBTools.url);
-	        			PreparedStatement pstmt = conn.prepareStatement(sql)){
-	        		pstmt.setDouble(1, 0.0);
-	        		pstmt.executeUpdate();
-	        	} catch(SQLException e){
-	        		System.out.println(e.getMessage());
-	        	}
+				int dialogButton = JOptionPane.YES_NO_CANCEL_OPTION;
+				int dialogResult = JOptionPane.showConfirmDialog(btnFinalizePayPeriod, "Finalize Pay Period?","Warning",dialogButton);
 				
-				//Print Screen Contents
-				JOptionPane.showMessageDialog(null, "Pay Period Finalized");
-				dispose();
+				
+				if(dialogResult == JOptionPane.YES_OPTION){
+					
+					//print screen contents
+					
+					String sql = "UPDATE User SET HOURS =?";
+					try (Connection conn = DriverManager.getConnection(DBTools.url);
+		        			PreparedStatement pstmt = conn.prepareStatement(sql)){
+		        		pstmt.setDouble(1, 0.0);
+		        		pstmt.executeUpdate();
+		        	} catch(SQLException e){
+		        		System.out.println(e.getMessage());
+		        	}
+					
+					String sql2 = "UPDATE Inventory SET ORDER =?";
+					try (Connection conn = DriverManager.getConnection(DBTools.url);
+		        			PreparedStatement pstmt = conn.prepareStatement(sql2)){
+		        		pstmt.setInt(1, 0);
+		        		pstmt.executeUpdate();
+		        	} catch(SQLException e){
+		        		System.out.println(e.getMessage());
+		        	}
+					
+					String sql3 = "UPDATE Sales SET WEEK =?";
+					try (Connection conn = DriverManager.getConnection(DBTools.url);
+		        			PreparedStatement pstmt = conn.prepareStatement(sql3)){
+		        		pstmt.setString(1, "past");
+		        		pstmt.executeUpdate();
+		        	} catch(SQLException e){
+		        		System.out.println(e.getMessage());
+		        	}
+					
+					
+					JOptionPane.showMessageDialog(null, "Pay Period Finalized");
+					dispose();
+				}
 			}
 		});
 	}
