@@ -19,15 +19,16 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
+import javax.swing.JPasswordField;
 
 
 public class Login extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField txtUsername;
-	private JTextField txtPassword;
 	
 	static String currentUser = "No User";
+	private JPasswordField txtPassword;
 	
 	/**
 	 * Launch the application.
@@ -57,20 +58,19 @@ public class Login extends JFrame {
 		contentPane.setLayout(null);
 		
 		JButton btnLogin = new JButton("Login");
-		btnLogin.setBounds(162, 125, 117, 29);
+		btnLogin.setBounds(166, 147, 117, 29);
 		contentPane.add(btnLogin);
 		
 		txtUsername = new JTextField();
 		txtUsername.setText("Username");
-		txtUsername.setBounds(155, 49, 130, 26);
+		txtUsername.setBounds(160, 71, 124, 26);
 		contentPane.add(txtUsername);
 		txtUsername.setColumns(10);
 		
-		txtPassword = new JTextField();
+		txtPassword = new JPasswordField();
 		txtPassword.setText("Password");
-		txtPassword.setBounds(155, 85, 130, 26);
+		txtPassword.setBounds(160, 109, 124, 26);
 		contentPane.add(txtPassword);
-		txtPassword.setColumns(10);
 		
 			
 		btnLogin.addActionListener(new ActionListener(){

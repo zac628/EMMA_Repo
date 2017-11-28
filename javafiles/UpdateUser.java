@@ -183,11 +183,11 @@ public class UpdateUser extends JFrame {
 		label.setBounds(229, 71, 88, 16);
 		contentPane.add(label);
 		
-		JLabel lblComit = new JLabel("Comit");
+		JLabel lblComit = new JLabel("Commit");
 		lblComit.setBounds(164, 71, 61, 16);
 		contentPane.add(lblComit);
 		
-		JLabel label_1 = new JLabel("Comit");
+		JLabel label_1 = new JLabel("Commit");
 		label_1.setBounds(383, 68, 61, 16);
 		contentPane.add(label_1);
 		
