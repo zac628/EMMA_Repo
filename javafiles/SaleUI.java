@@ -263,87 +263,153 @@ public class SaleUI extends JFrame {
 						System.out.println(e.getMessage());
 					}
 					
-					String sql = "UPDATE WorkOrders SET SDESCRIPTION =?, LABOR =?, CDATE =?, NOTES =? WHERE NUMBER =?";
+					String sql = "UPDATE WorkOrders SET SDESCRIPTION =?, LABOR =?, CDATE =?, NOTES =?, STATUS =? WHERE NUMBER =?";
 					try (Connection conn = DriverManager.getConnection(DBTools.url);
 		        			PreparedStatement pstmt = conn.prepareStatement(sql)){
 		        		pstmt.setString(1, editorPaneDescription.getText());
 		        		pstmt.setDouble(2, labor);
 		        		pstmt.setString(3, df.format(previous));
 		        		pstmt.setString(4, prevNotes + "\n" + editorPaneNotes.getText());
-		        		pstmt.setInt(5, on);
+		        		pstmt.setString(5, "Done");
+		        		pstmt.setInt(6, on);
 		        		pstmt.executeUpdate();
 		        	} catch(SQLException e){
 		        		System.out.println(e.getMessage());
 		        	}
-					
-					if(textFieldP1.getText() != null){
+					boolean t1 = textFieldP1.getText().isEmpty();
+					if(t1 == false){
 						int q1 = Integer.parseInt(Q1.getText());
-						String sql3 = "SELECT PRICE FROM Inventory WHERE NAME =?";
+						int iQ1 = 0;
+						String sql3 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
 						try(Connection conn = DriverManager.getConnection(DBTools.url);
 								PreparedStatement pstmt = conn.prepareStatement(sql3)){
 							pstmt.setString(1, textFieldP1.getText());
 							ResultSet rs = pstmt.executeQuery();
 							
-							price += rs.getDouble("Price") * q1;
+							price += rs.getDouble("PRICE") * q1;
+							iQ1 = rs.getInt("QUANTITY");
 						}catch(SQLException e){
 							System.out.println(e.getMessage());
 						}
+						
+						String sql9 = "UPDATE Inventory SET QUANTITY =? WHERE PART =?";
+						try (Connection conn = DriverManager.getConnection(DBTools.url);
+			        			PreparedStatement pstmt = conn.prepareStatement(sql9)){
+							pstmt.setInt(1, iQ1 - q1);
+			        		pstmt.setString(2, textFieldP1.getText());
+			        		pstmt.executeUpdate();
+			        	} catch(SQLException e){
+			        		System.out.println(e.getMessage());
+			        	}
+						
 					}
-					
-					if(textFieldP2.getText() != null){
+					boolean t2 = textFieldP2.getText().isEmpty();
+					if(t2 == false){
 						int q2 = Integer.parseInt(textFieldQ2.getText());
-						String sql4 = "SELECT PRICE FROM Inventory WHERE NAME =?";
+						int iQ2 = 0;
+						
+						String sql4 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
 						try(Connection conn = DriverManager.getConnection(DBTools.url);
 								PreparedStatement pstmt = conn.prepareStatement(sql4)){
 							pstmt.setString(1, textFieldP2.getText());
 							ResultSet rs = pstmt.executeQuery();
 							
-							price += rs.getDouble("Price") * q2;
+							price += rs.getDouble("PRICE") * q2;
+							iQ2 = rs.getInt("QUANTITY");
 						}catch(SQLException e){
 							System.out.println(e.getMessage());
 						}
+						
+						String sql10 = "UPDATE Inventory SET QUANTITY =? WHERE PART =?";
+						try (Connection conn = DriverManager.getConnection(DBTools.url);
+			        			PreparedStatement pstmt = conn.prepareStatement(sql10)){
+							pstmt.setInt(1, iQ2 - q2);
+			        		pstmt.setString(2, textFieldP2.getText());
+			        		pstmt.executeUpdate();
+			        	} catch(SQLException e){
+			        		System.out.println(e.getMessage());
+			        	}
 					}
-					
-					if(textFieldP3.getText() != null){
+					boolean t3 = textFieldP3.getText().isEmpty();
+					if(t3 == false){
 						int q3 = Integer.parseInt(textFieldQ3.getText());
-						String sql5 = "SELECT PRICE FROM Inventory WHERE NAME =?";
+						int iQ3 = 0;
+						
+						String sql5 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
 						try(Connection conn = DriverManager.getConnection(DBTools.url);
 								PreparedStatement pstmt = conn.prepareStatement(sql5)){
 							pstmt.setString(1, textFieldP3.getText());
 							ResultSet rs = pstmt.executeQuery();
 							
-							price += rs.getDouble("Price") * q3;
+							price += rs.getDouble("PRICE") * q3;
+							iQ3 = rs.getInt("QUANTITY");
 						}catch(SQLException e){
 							System.out.println(e.getMessage());
 						}
+						
+						String sql11 = "UPDATE Inventory SET QUANTITY =? WHERE PART =?";
+						try (Connection conn = DriverManager.getConnection(DBTools.url);
+			        			PreparedStatement pstmt = conn.prepareStatement(sql11)){
+							pstmt.setInt(1, iQ3 - q3);
+			        		pstmt.setString(2, textFieldP3.getText());
+			        		pstmt.executeUpdate();
+			        	} catch(SQLException e){
+			        		System.out.println(e.getMessage());
+			        	}
 					}
-					
-					if(textFieldP4.getText() != null){
+					boolean t4 = textFieldP4.getText().isEmpty();
+					if(t4 == false){
 						int q4 = Integer.parseInt(textFieldQ4.getText());
-						String sql6 = "SELECT PRICE FROM Inventory WHERE NAME =?";
+						int iQ4 = 0;
+						
+						String sql6 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
 						try(Connection conn = DriverManager.getConnection(DBTools.url);
 								PreparedStatement pstmt = conn.prepareStatement(sql6)){
 							pstmt.setString(1, textFieldP4.getText());
 							ResultSet rs = pstmt.executeQuery();
 							
-							price += rs.getDouble("Price") * q4;
+							price += rs.getDouble("PRICE") * q4;
+							iQ4 = rs.getInt("QUANTITY");
 						}catch(SQLException e){
 							System.out.println(e.getMessage());
 						}
+						
+						String sql12 = "UPDATE Inventory SET QUANTITY =? WHERE PART =?";
+						try (Connection conn = DriverManager.getConnection(DBTools.url);
+			        			PreparedStatement pstmt = conn.prepareStatement(sql12)){
+							pstmt.setInt(1, iQ4 - q4);
+			        		pstmt.setString(2, textFieldP4.getText());
+			        		pstmt.executeUpdate();
+			        	} catch(SQLException e){
+			        		System.out.println(e.getMessage());
+			        	}
 					}
-					
-					if(textFieldP5.getText() != null){
+					boolean t5 = textFieldP5.getText().isEmpty();
+					if(t5 == false){
 						int q5 = Integer.parseInt(textFieldQ5.getText());
-						String sql7 = "SELECT PRICE FROM Inventory WHERE NAME =?";
+						int iQ5 = 0;
+						
+						String sql7 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
 						try(Connection conn = DriverManager.getConnection(DBTools.url);
 								PreparedStatement pstmt = conn.prepareStatement(sql7)){
 							pstmt.setString(1, textFieldP5.getText());
 							ResultSet rs = pstmt.executeQuery();
 							
-							price += rs.getDouble("Price") * q5;
+							price += rs.getDouble("PRICE") * q5;
+							iQ5 = rs.getInt("QUANTITY");
 						}catch(SQLException e){
 							System.out.println(e.getMessage());
 						}
+						
+						String sql13 = "UPDATE Inventory SET QUANTITY =? WHERE PART =?";
+						try (Connection conn = DriverManager.getConnection(DBTools.url);
+			        			PreparedStatement pstmt = conn.prepareStatement(sql13)){
+							pstmt.setInt(1, iQ5 - q5);
+			        		pstmt.setString(2, textFieldP5.getText());
+			        		pstmt.executeUpdate();
+			        	} catch(SQLException e){
+			        		System.out.println(e.getMessage());
+			        	}
 					}
 					
 					String sql8 = "INSERT INTO Sales(WO,PAID) VALUES(?,?)";
@@ -355,6 +421,9 @@ public class SaleUI extends JFrame {
 			        } catch (SQLException e) {
 			            System.out.println(e.getMessage());
 			        }
+			        
+			        JOptionPane.showMessageDialog(null, "Paid: $" + formatter.format(price));
+			        dispose();
 				}
 			}
 		});
