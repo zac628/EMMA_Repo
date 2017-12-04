@@ -101,7 +101,7 @@ public class MechanicUI extends JFrame {
 		btnPunch.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent event){
 				int dialogButton = JOptionPane.YES_NO_CANCEL_OPTION;
-				int dialogResult = JOptionPane.showConfirmDialog(btnPunch, "Record Time Stamp?\nPrevious Punch: "+Employee.getPunch(Login.currentUser)+" Decimal Hours","Warning",dialogButton);
+				int dialogResult = JOptionPane.showConfirmDialog(btnPunch, "Record Time Stamp?\nPrevious Punch: "+Employee.getTime(Login.currentUser),"Warning",dialogButton);
 				
 				
 				if(dialogResult == JOptionPane.YES_OPTION){
@@ -112,8 +112,10 @@ public class MechanicUI extends JFrame {
 					Double dub = (Double.parseDouble(d[0])+(Double.parseDouble(d[1])/60));
 					String Fdub = dec.format(dub);
 					Double dos = Double.parseDouble(Fdub);
+					String punch = df.format(dateobj);
 					if(Employee.getPunch(Login.currentUser) == null || Employee.getPunch(Login.currentUser) == 0.0){
 						Employee.setPunch(dos, Login.currentUser);
+						Employee.setTime(punch, Login.currentUser);
 					}
 					else{
 						System.out.println("Punch found: "+Employee.getPunch(Login.currentUser)); 
@@ -121,6 +123,7 @@ public class MechanicUI extends JFrame {
 						Double tempHours = Employee.getHours(Login.currentUser);
 						Employee.setHours((tempHours+temp), Login.currentUser); 
 						Employee.setPunch(0.0,Login.currentUser);
+						Employee.setTime("Not clocked in",Login.currentUser);
 					}
 				}
 			}
