@@ -52,7 +52,7 @@ public class UpdateClient extends JFrame {
 	 */
 	public UpdateClient() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 570, 320);
+		setBounds(100, 100, 634, 368);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,7 +60,7 @@ public class UpdateClient extends JFrame {
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setText("");
-		txtFirstName.setBounds(11, 66, 179, 26);
+		txtFirstName.setBounds(11, 72, 179, 26);
 		contentPane.add(txtFirstName);
 		txtFirstName.setColumns(10);
 		
@@ -69,16 +69,16 @@ public class UpdateClient extends JFrame {
 		contentPane.add(lblNewLabel);
 		
 		txtLastName = new JTextField();
-		txtLastName.setBounds(289, 72, 179, 26);
+		txtLastName.setBounds(306, 69, 179, 26);
 		contentPane.add(txtLastName);
 		txtLastName.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("Last Name*");
-		lblNewLabel_1.setBounds(289, 56, 84, 16);
+		lblNewLabel_1.setBounds(306, 53, 84, 16);
 		contentPane.add(lblNewLabel_1);
 		
 		txtPhoneNumber = new JTextField();
-		txtPhoneNumber.setBounds(11, 112, 179, 26);
+		txtPhoneNumber.setBounds(11, 114, 179, 26);
 		contentPane.add(txtPhoneNumber);
 		txtPhoneNumber.setColumns(10);
 		
@@ -87,21 +87,21 @@ public class UpdateClient extends JFrame {
 		contentPane.add(lblNewLabel_2);
 		
 		txtEmail = new JTextField();
-		txtEmail.setBounds(289, 114, 179, 26);
+		txtEmail.setBounds(306, 111, 179, 26);
 		contentPane.add(txtEmail);
 		txtEmail.setColumns(10);
 		
 		JLabel lblNewLabel_3 = new JLabel("Email");
-		lblNewLabel_3.setBounds(288, 98, 61, 16);
+		lblNewLabel_3.setBounds(305, 95, 61, 16);
 		contentPane.add(lblNewLabel_3);
 		
 		txtAddress = new JTextField();
-		txtAddress.setBounds(11, 158, 457, 26);
+		txtAddress.setBounds(11, 170, 457, 26);
 		contentPane.add(txtAddress);
 		txtAddress.setColumns(10);
 		
 		JLabel lblNewLabel_4 = new JLabel("Address");
-		lblNewLabel_4.setBounds(11, 142, 61, 16);
+		lblNewLabel_4.setBounds(11, 154, 61, 16);
 		contentPane.add(lblNewLabel_4);
 		
 		JButton btnCancel = new JButton("Cancel");
@@ -109,7 +109,7 @@ public class UpdateClient extends JFrame {
 		contentPane.add(btnCancel);
 		
 		JButton btnFNC = new JButton("Commit");
-		btnFNC.setBounds(201, 72, 77, 29);
+		btnFNC.setBounds(201, 72, 90, 29);
 		contentPane.add(btnFNC);
 		btnFNC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -119,7 +119,7 @@ public class UpdateClient extends JFrame {
 		});
 		
 		JButton btnLNC = new JButton("Commit");
-		btnLNC.setBounds(479, 72, 77, 29);
+		btnLNC.setBounds(496, 69, 89, 29);
 		contentPane.add(btnLNC);
 		btnLNC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -129,7 +129,7 @@ public class UpdateClient extends JFrame {
 		});
 		
 		JButton btnPhoneC = new JButton("Commit");
-		btnPhoneC.setBounds(201, 114, 77, 29);
+		btnPhoneC.setBounds(201, 114, 90, 29);
 		contentPane.add(btnPhoneC);
 		btnPhoneC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -139,7 +139,7 @@ public class UpdateClient extends JFrame {
 		});
 		
 		JButton btnEmailC = new JButton("Commit");
-		btnEmailC.setBounds(479, 114, 77, 29);
+		btnEmailC.setBounds(496, 111, 89, 29);
 		contentPane.add(btnEmailC);
 		btnEmailC.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -150,7 +150,7 @@ public class UpdateClient extends JFrame {
 		});
 		
 		JButton btnAddress = new JButton("Commit");
-		btnAddress.setBounds(479, 158, 77, 29);
+		btnAddress.setBounds(479, 170, 89, 29);
 		contentPane.add(btnAddress);
 		btnAddress.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -160,12 +160,12 @@ public class UpdateClient extends JFrame {
 		});
 		
 		emailField = new JTextField();
-		emailField.setBounds(145, 26, 258, 26);
+		emailField.setBounds(145, 30, 258, 26);
 		contentPane.add(emailField);
 		emailField.setColumns(10);
 		
 		JLabel lblEnterEmailOf = new JLabel("Enter Email of the Client to update");
-		lblEnterEmailOf.setBounds(163, 8, 224, 16);
+		lblEnterEmailOf.setBounds(146, 16, 244, 16);
 		contentPane.add(lblEnterEmailOf);
 		
 		JButton btnAddCar = new JButton("Add Car");
@@ -187,7 +187,7 @@ public class UpdateClient extends JFrame {
 		});
 		
 		JButton btnRemoveCar = new JButton("Remove Car");
-		btnRemoveCar.setBounds(396, 215, 117, 29);
+		btnRemoveCar.setBounds(396, 215, 135, 29);
 		contentPane.add(btnRemoveCar);
 		btnRemoveCar.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){

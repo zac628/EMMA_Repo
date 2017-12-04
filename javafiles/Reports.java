@@ -13,7 +13,7 @@ public class Reports {
 		try (Connection conn = DriverManager.getConnection(DBTools.url);
 				PreparedStatement pstmt = conn.prepareStatement(sql);){
 			pstmt.setString(1, "current");
-			ResultSet rs = pstmt.executeQuery(sql);
+			ResultSet rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				revenue += rs.getDouble("PAID");
