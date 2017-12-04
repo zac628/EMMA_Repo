@@ -130,6 +130,34 @@ public class Employee {
 		}
 				
 	}
+	
+	public static void setTime(String punch, String username){
+		String sql = "UPDATE User SET TempTime = ?" + "WHERE USERNAME = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql)){
+			pstmt.setString(1, punch);
+			pstmt.setString(2, username);
+			pstmt.executeUpdate();
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+		}
+				
+	}
+	
+	public static String getTime(String username){
+		String sql = "SELECT TempTime From User " + "WHERE USERNAME = ?";
+		try (Connection conn = DriverManager.getConnection(DBTools.url);
+				PreparedStatement pstmt = conn.prepareStatement(sql);){
+			pstmt.setString(1, username);
+			ResultSet rs = pstmt.executeQuery();
+			return rs.getString("TempTime");
+		} catch(SQLException e){
+			System.out.println(e.getMessage());
+			return "XXXX";
+		}
+				
+	}
+	
 	public static String getFName(String username){
 		String sql = "SELECT FNAME From User " + "WHERE USERNAME = ?";
 		try (Connection conn = DriverManager.getConnection(DBTools.url);

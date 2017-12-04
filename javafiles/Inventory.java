@@ -93,7 +93,7 @@ public class Inventory extends JFrame {
 		contentPane.add(lblOrder);
 		
 		JButton btnStock = new JButton("Stock");
-		btnStock.setBounds(1081, 119, 156, 117);
+		btnStock.setBounds(1081, 78, 156, 117);
 		contentPane.add(btnStock);
 		btnStock.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
@@ -115,7 +115,7 @@ public class Inventory extends JFrame {
 		        }
 				String sql2 = "UPDATE Inventory SET QUANTITY = ?, ODR = ? WHERE PART = ?";
 				try (Connection conn = DriverManager.getConnection(DBTools.url);
-		                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+		                PreparedStatement pstmt = conn.prepareStatement(sql2)) {
 					pstmt.setInt(1, (q+n));
 					pstmt.setInt(2, 0);
 					pstmt.setString(3, x);
@@ -123,26 +123,63 @@ public class Inventory extends JFrame {
 				} catch (SQLException e) {
 		            System.out.println(e.getMessage());
 		        }
+				showTable();
 			}
 		});
 		
 		JButton btnOrder = new JButton("Order");
-		btnOrder.setBounds(1081, 362, 156, 117);
+		btnOrder.setBounds(1081, 273, 156, 117);
 		contentPane.add(btnOrder);
 		btnOrder.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
+				String x = table.getValueAt(table.getSelectedRow(), 0).toString();
+				int num = Integer.parseInt(JOptionPane.showInputDialog("How many "+x+"(s) would you like to add?"));
+				int n = 0;
+				String sql = "SELECT ODR FROM Inventory WHERE PART = ?";
+				try (Connection conn = DriverManager.getConnection(DBTools.url);
+		                PreparedStatement pstmt = conn.prepareStatement(sql)) {
+					pstmt.setString(1, x);
+					ResultSet rs = pstmt.executeQuery();
+					n = rs.getInt("ODR");
+				} catch (SQLException e) {
+		            System.out.println(e.getMessage());
+		        }
+				String sql2 = "UPDATE Inventory SET ODR = ? WHERE PART = ?";
+				try (Connection conn = DriverManager.getConnection(DBTools.url);
+		                PreparedStatement pstmt = conn.prepareStatement(sql2)) {
+					pstmt.setInt(1, num);
+					pstmt.setString(2, x);
+					pstmt.executeUpdate();
+				} catch (SQLException e) {
+		            System.out.println(e.getMessage());
+		        }
 				
+				showTable();
 			}
 		});
 		
 		JButton btnSpecialOrder = new JButton("Special Order");
-		btnSpecialOrder.setBounds(1081, 605, 156, 117);
+		btnSpecialOrder.setBounds(1081, 468, 156, 117);
 		contentPane.add(btnSpecialOrder);
 		btnSpecialOrder.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent ev){
+				JOptionPane.showMessageDialog(btnSpecialOrder, "Admin Login Required");
+				AdminCheck.go();
+				showTable();
+			}
+		});
+		
+		JButton btnRemove = new JButton("Remove Part");
+		btnRemove.setBounds(1081, 663, 156, 117);
+		contentPane.add(btnRemove);
+		btnRemove.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent ev){
+				JOptionPane.showMessageDialog(btnRemove, "Admin Login Required");
+				CheckRemove.go(table.getValueAt(table.getSelectedRow(), 0).toString());
 				
 			}
 		});
+		
 		
 		
 	}

@@ -44,7 +44,7 @@ public class ReportsUI extends JFrame {
 					ReportsUI frame = new ReportsUI();
 					frame.setVisible(true);
 				} catch (Exception e) {
-					e.printStackTrace();
+					e.printStackTrace(); 
 				}
 			}
 		});

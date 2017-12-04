@@ -189,6 +189,7 @@ public class ContactForm extends JFrame {
 			            System.out.println(e.getMessage());
 			        }
 				 JOptionPane.showMessageDialog(null, "Success");
+				 dispose();
 			}
 		});
 			
