@@ -49,7 +49,7 @@ public class AdminTools extends JFrame {
 		});
 		
 		JButton btnUpdateEmployee = new JButton("Update Emplyoee/User");
-		btnUpdateEmployee.setBounds(184, 518, 469, 93);
+		btnUpdateEmployee.setBounds(507, 518, 469, 93);
 		contentPane.add(btnUpdateEmployee);
 		btnUpdateEmployee.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent client) {
@@ -66,10 +66,6 @@ public class AdminTools extends JFrame {
 			}
 		});
 		
-		JButton btnSale = new JButton("Sale");
-		btnSale.setBounds(837, 518, 406, 93);
-		contentPane.add(btnSale);
-		
 		JButton btnBack = new JButton("<");
 		btnBack.setBounds(51, 36, 44, 29);
 		contentPane.add(btnBack);
@@ -77,12 +73,6 @@ public class AdminTools extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				dispose();
 				AdminUI.go();
-			}
-		});
-		
-		btnSale.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent sale) {
-				//shit
 			}
 		});
 	}

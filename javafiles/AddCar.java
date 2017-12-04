@@ -52,7 +52,7 @@ public class AddCar extends JFrame {
 	 */
 	public AddCar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 301);
+		setBounds(100, 100, 473, 334);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -74,11 +74,11 @@ public class AddCar extends JFrame {
 		contentPane.add(comboBox);
 		
 		JLabel lblNewLabel_6 = new JLabel("Car Make ");
-		lblNewLabel_6.setBounds(52, 71, 62, 16);
+		lblNewLabel_6.setBounds(52, 71, 84, 16);
 		contentPane.add(lblNewLabel_6);
 		
 		txtCarModel = new JTextField();
-		txtCarModel.setBounds(162, 85, 115, 26);
+		txtCarModel.setBounds(165, 86, 115, 26);
 		contentPane.add(txtCarModel);
 		txtCarModel.setColumns(10);
 		
@@ -87,12 +87,12 @@ public class AddCar extends JFrame {
 		contentPane.add(lblNewLabel_7);
 		
 		txtCarColor = new JTextField();
-		txtCarColor.setBounds(162, 142, 128, 26);
+		txtCarColor.setBounds(165, 144, 115, 26);
 		contentPane.add(txtCarColor);
 		txtCarColor.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Car Color ");
-		lblNewLabel_8.setBounds(162, 128, 71, 16);
+		lblNewLabel_8.setBounds(162, 128, 84, 16);
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnCompleteForm = new JButton("Complete");
@@ -105,11 +105,11 @@ public class AddCar extends JFrame {
 		txtPlate.setColumns(10);
 		
 		JLabel lblPlateNumber = new JLabel("Plate Number");
-		lblPlateNumber.setBounds(52, 180, 84, 16);
+		lblPlateNumber.setBounds(52, 180, 98, 16);
 		contentPane.add(lblPlateNumber);
 		
 		emailField = new JTextField(currentEmail);
-		emailField.setBounds(115, 17, 220, 26);
+		emailField.setBounds(113, 29, 220, 26);
 		contentPane.add(emailField);
 		emailField.setColumns(10);
 		

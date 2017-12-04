@@ -50,14 +50,14 @@ public class SpecialOrder extends JFrame {
 	 */
 	public SpecialOrder() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(500, 289, 450, 301);
+		setBounds(500, 289, 464, 330);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		txtPrice = new JTextField();
-		txtPrice.setBounds(69, 133, 115, 26);
+		txtPrice.setBounds(70, 139, 115, 26);
 		contentPane.add(txtPrice);
 		txtPrice.setColumns(10);
 		
@@ -66,7 +66,7 @@ public class SpecialOrder extends JFrame {
 		contentPane.add(lblPrice);
 		
 		txtOdr = new JTextField();
-		txtOdr.setBounds(253, 133, 128, 26);
+		txtOdr.setBounds(248, 139, 128, 26);
 		contentPane.add(txtOdr);
 		txtOdr.setColumns(10);
 		

@@ -54,7 +54,7 @@ public class ContactForm extends JFrame {
 	 */
 	public ContactForm() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 301);
+		setBounds(100, 100, 489, 338);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -62,12 +62,12 @@ public class ContactForm extends JFrame {
 		
 		txtFirstName = new JTextField();
 		txtFirstName.setText("");
-		txtFirstName.setBounds(22, 31, 179, 26);
+		txtFirstName.setBounds(22, 34, 179, 26);
 		contentPane.add(txtFirstName);
 		txtFirstName.setColumns(10);
 		
 		JLabel lblNewLabel = new JLabel("First Name*");
-		lblNewLabel.setBounds(22, 18, 84, 16);
+		lblNewLabel.setBounds(22, 18, 98, 16);
 		contentPane.add(lblNewLabel);
 		
 		txtLastName = new JTextField();
@@ -85,7 +85,7 @@ public class ContactForm extends JFrame {
 		txtPhoneNumber.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Phone Number*");
-		lblNewLabel_2.setBounds(22, 59, 98, 16);
+		lblNewLabel_2.setBounds(22, 59, 125, 16);
 		contentPane.add(lblNewLabel_2);
 		
 		txtEmail = new JTextField();
@@ -122,7 +122,7 @@ public class ContactForm extends JFrame {
 		contentPane.add(comboBox);
 		
 		JLabel lblNewLabel_6 = new JLabel("Car Make ");
-		lblNewLabel_6.setBounds(22, 169, 62, 16);
+		lblNewLabel_6.setBounds(22, 169, 98, 16);
 		contentPane.add(lblNewLabel_6);
 		
 		txtCarModel = new JTextField();
@@ -140,7 +140,7 @@ public class ContactForm extends JFrame {
 		txtCarColor.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Car Color ");
-		lblNewLabel_8.setBounds(277, 169, 71, 16);
+		lblNewLabel_8.setBounds(277, 169, 125, 16);
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnCompleteForm = new JButton("Complete");
@@ -153,7 +153,7 @@ public class ContactForm extends JFrame {
 		txtPlate.setColumns(10);
 		
 		JLabel lblPlateNumber = new JLabel("Plate Number");
-		lblPlateNumber.setBounds(22, 215, 84, 16);
+		lblPlateNumber.setBounds(22, 215, 125, 16);
 		contentPane.add(lblPlateNumber);
 		
 		btnCompleteForm.addActionListener(new ActionListener(){

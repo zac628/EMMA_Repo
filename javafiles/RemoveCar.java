@@ -56,7 +56,7 @@ public class RemoveCar extends JFrame {
 	 */
 	public RemoveCar() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 301);
+		setBounds(100, 100, 465, 325);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -106,7 +106,7 @@ public class RemoveCar extends JFrame {
 	
 		
 		JLabel lblNewLabel_6 = new JLabel("Car Make ");
-		lblNewLabel_6.setBounds(25, 88, 62, 16);
+		lblNewLabel_6.setBounds(25, 88, 84, 16);
 		contentPane.add(lblNewLabel_6);
 		
 		txtCarModel = new JTextField();
@@ -124,7 +124,7 @@ public class RemoveCar extends JFrame {
 		txtCarColor.setColumns(10);
 		
 		JLabel lblNewLabel_8 = new JLabel("Car Color ");
-		lblNewLabel_8.setBounds(245, 154, 71, 16);
+		lblNewLabel_8.setBounds(245, 154, 93, 16);
 		contentPane.add(lblNewLabel_8);
 		
 		JButton btnDelete = new JButton("Delete This Car");
@@ -137,7 +137,7 @@ public class RemoveCar extends JFrame {
 		txtPlate.setColumns(10);
 		
 		JLabel lblPlateNumber = new JLabel("Plate Number");
-		lblPlateNumber.setBounds(25, 154, 84, 16);
+		lblPlateNumber.setBounds(25, 154, 115, 16);
 		contentPane.add(lblPlateNumber);
 		
 		JComboBox comboCar = new JComboBox();
@@ -150,7 +150,7 @@ public class RemoveCar extends JFrame {
 		contentPane.add(lblCar);
 		
 		JButton btnGo = new JButton("Go");
-		btnGo.setBounds(231, 33, 56, 29);
+		btnGo.setBounds(206, 32, 56, 29);
 		contentPane.add(btnGo);
 		comboCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {

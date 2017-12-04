@@ -59,7 +59,7 @@ public class UpdateUser extends JFrame {
 	 */
 	public UpdateUser() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 301);
+		setBounds(100, 100, 481, 320);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -87,7 +87,7 @@ public class UpdateUser extends JFrame {
 		contentPane.add(comboBox);
 		
 		JLabel lblDesignation = new JLabel("Designation");
-		lblDesignation.setBounds(246, 175, 76, 16);
+		lblDesignation.setBounds(246, 175, 95, 16);
 		contentPane.add(lblDesignation);
 		
 		txtLastName = new JTextField();
@@ -193,7 +193,7 @@ public class UpdateUser extends JFrame {
 		contentPane.add(label_1);
 		
 		lblEnterUsernameOf = new JLabel("Enter Username of the Employee to update");
-		lblEnterUsernameOf.setBounds(89, 6, 271, 26);
+		lblEnterUsernameOf.setBounds(77, 6, 316, 26);
 		contentPane.add(lblEnterUsernameOf);
 		
 		usernameField = new JTextField();

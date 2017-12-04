@@ -51,7 +51,7 @@ public class CreateUser extends JFrame {
 	 */
 	public CreateUser() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 450, 301);
+		setBounds(100, 100, 461, 327);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -79,7 +79,7 @@ public class CreateUser extends JFrame {
 		contentPane.add(comboBox);
 		
 		JLabel lblDesignation = new JLabel("Designation");
-		lblDesignation.setBounds(246, 126, 76, 16);
+		lblDesignation.setBounds(246, 126, 100, 16);
 		contentPane.add(lblDesignation);
 		
 		txtLastName = new JTextField();
