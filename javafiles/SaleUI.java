@@ -46,20 +46,18 @@ public class SaleUI extends JFrame {
 	private JLabel lblPartName;
 	private JLabel lblQuantity;
 	private JTextField textFieldP1;
-	private JTextField Q1;
 	private JTextField textFieldP2;
-	private JTextField textFieldQ2;
 	private JTextField textFieldP3;
-	private JTextField textFieldQ3;
 	private JTextField textFieldP4;
-	private JTextField textFieldQ4;
 	private JTextField textFieldP5;
-	private JTextField textFieldQ5;
 	private JLabel lblX;
 	private JLabel x2;
 	private JLabel x3;
 	private JLabel x4;
 	private JLabel x5;
+	private JComboBox comboBoxQ3;
+	private JComboBox comboBoxQ4;
+	private JComboBox comboBoxQ5;
 
 	/**
 	 * Launch the application.
@@ -82,6 +80,7 @@ public class SaleUI extends JFrame {
 	 */
 	public SaleUI() {
 		DecimalFormat formatter = new DecimalFormat("#0.00");
+		String[] nums = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15"};
 		
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(1, 1, 1450, 880);
@@ -162,23 +161,11 @@ public class SaleUI extends JFrame {
 		contentPane.add(textFieldP1);
 		textFieldP1.setColumns(10);
 		
-		Q1 = new JTextField();
-		Q1.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		Q1.setColumns(10);
-		Q1.setBounds(1124, 95, 69, 31);
-		contentPane.add(Q1);
-		
 		textFieldP2 = new JTextField();
 		textFieldP2.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		textFieldP2.setColumns(10);
 		textFieldP2.setBounds(785, 142, 270, 31);
 		contentPane.add(textFieldP2);
-		
-		textFieldQ2 = new JTextField();
-		textFieldQ2.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		textFieldQ2.setColumns(10);
-		textFieldQ2.setBounds(1124, 142, 69, 31);
-		contentPane.add(textFieldQ2);
 		
 		textFieldP3 = new JTextField();
 		textFieldP3.setFont(new Font("Monospaced", Font.PLAIN, 18));
@@ -186,35 +173,17 @@ public class SaleUI extends JFrame {
 		textFieldP3.setBounds(785, 190, 270, 31);
 		contentPane.add(textFieldP3);
 		
-		textFieldQ3 = new JTextField();
-		textFieldQ3.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		textFieldQ3.setColumns(10);
-		textFieldQ3.setBounds(1124, 193, 69, 31);
-		contentPane.add(textFieldQ3);
-		
 		textFieldP4 = new JTextField();
 		textFieldP4.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		textFieldP4.setColumns(10);
 		textFieldP4.setBounds(785, 237, 270, 31);
 		contentPane.add(textFieldP4);
 		
-		textFieldQ4 = new JTextField();
-		textFieldQ4.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		textFieldQ4.setColumns(10);
-		textFieldQ4.setBounds(1124, 240, 69, 31);
-		contentPane.add(textFieldQ4);
-		
 		textFieldP5 = new JTextField();
 		textFieldP5.setFont(new Font("Monospaced", Font.PLAIN, 18));
 		textFieldP5.setColumns(10);
 		textFieldP5.setBounds(785, 284, 270, 31);
 		contentPane.add(textFieldP5);
-		
-		textFieldQ5 = new JTextField();
-		textFieldQ5.setFont(new Font("Monospaced", Font.PLAIN, 18));
-		textFieldQ5.setColumns(10);
-		textFieldQ5.setBounds(1124, 287, 69, 31);
-		contentPane.add(textFieldQ5);
 		
 		lblX = new JLabel("x");
 		lblX.setBounds(1081, 101, 69, 20);
@@ -239,6 +208,27 @@ public class SaleUI extends JFrame {
 		btnPay = new JButton("Pay");
 		btnPay.setBounds(891, 679, 179, 49);
 		contentPane.add(btnPay);
+		
+		JComboBox<String> comboBoxQ1 = new JComboBox<String>(nums);
+		comboBoxQ1.setBounds(1124, 93, 69, 31);
+		contentPane.add(comboBoxQ1);
+		
+		
+		JComboBox<String> comboBoxQ2 = new JComboBox<String>(nums);
+		comboBoxQ2.setBounds(1124, 143, 69, 31);
+		contentPane.add(comboBoxQ2);
+		
+		JComboBox<String> comboBoxQ3 = new JComboBox<String>(nums);
+		comboBoxQ3.setBounds(1124, 191, 69, 31);
+		contentPane.add(comboBoxQ3);
+		
+		JComboBox<String> comboBoxQ4 = new JComboBox<String>(nums);
+		comboBoxQ4.setBounds(1124, 237, 69, 31);
+		contentPane.add(comboBoxQ4);
+		
+		JComboBox<String> comboBoxQ5 = new JComboBox<String>(nums);
+		comboBoxQ5.setBounds(1124, 284, 69, 31);
+		contentPane.add(comboBoxQ5);
 		btnPay.addActionListener(new ActionListener(){
 			public void actionPerformed(ActionEvent done){
 				int dialogButton = JOptionPane.YES_NO_CANCEL_OPTION;
@@ -278,7 +268,7 @@ public class SaleUI extends JFrame {
 		        	}
 					boolean t1 = textFieldP1.getText().isEmpty();
 					if(t1 == false){
-						int q1 = Integer.parseInt(Q1.getText());
+						int q1 = Integer.parseInt(comboBoxQ1.getSelectedItem().toString());
 						int iQ1 = 0;
 						String sql3 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
 						try(Connection conn = DriverManager.getConnection(DBTools.url);
@@ -305,7 +295,7 @@ public class SaleUI extends JFrame {
 					}
 					boolean t2 = textFieldP2.getText().isEmpty();
 					if(t2 == false){
-						int q2 = Integer.parseInt(textFieldQ2.getText());
+						int q2 = Integer.parseInt(comboBoxQ2.getSelectedItem().toString());
 						int iQ2 = 0;
 						
 						String sql4 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
@@ -332,7 +322,7 @@ public class SaleUI extends JFrame {
 					}
 					boolean t3 = textFieldP3.getText().isEmpty();
 					if(t3 == false){
-						int q3 = Integer.parseInt(textFieldQ3.getText());
+						int q3 = Integer.parseInt(comboBoxQ3.getSelectedItem().toString());
 						int iQ3 = 0;
 						
 						String sql5 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
@@ -359,7 +349,7 @@ public class SaleUI extends JFrame {
 					}
 					boolean t4 = textFieldP4.getText().isEmpty();
 					if(t4 == false){
-						int q4 = Integer.parseInt(textFieldQ4.getText());
+						int q4 = Integer.parseInt(comboBoxQ4.getSelectedItem().toString());
 						int iQ4 = 0;
 						
 						String sql6 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
@@ -386,7 +376,7 @@ public class SaleUI extends JFrame {
 					}
 					boolean t5 = textFieldP5.getText().isEmpty();
 					if(t5 == false){
-						int q5 = Integer.parseInt(textFieldQ5.getText());
+						int q5 = Integer.parseInt(comboBoxQ5.getSelectedItem().toString());
 						int iQ5 = 0;
 						
 						String sql7 = "SELECT PRICE,QUANTITY FROM Inventory WHERE PART =?";
